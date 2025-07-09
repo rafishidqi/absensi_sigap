@@ -16,7 +16,7 @@ echo'
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dasboard | Absensi #SIGAP</title> <!-- Sementara pakai hardcode karna belom ada urlbase untuk di admin .$site_name. -->
+  <title>Dasboard | '.$website_name.'</title> <!-- Sementara pakai hardcode karna belom ada urlbase untuk di admin .$site_name. -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="Pragma" content="no-cache">
@@ -58,7 +58,7 @@ echo'<div class="wrapper">
     <a href="./" class="logo">
       <span class="logo-mini"><b>ABSENSI</span>
       <!-- Sementara pakai hardcode karna belom ada urlbase untuk di admin -->
-      <img src="sw-assets/img/SPM_SIAGA.png" alt="Logo" style="height: 30px;">
+      <span class="logo-lg"><b>'.strtoupper($site_name).'</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

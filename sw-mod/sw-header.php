@@ -9,7 +9,7 @@ echo'
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
-  <title>ABSENSI #SIGAP</title> <!-- Sementara pakai hardcode karna belom ada urlbase baru '.$website_name.' -->
+  <title>'.$website_name.'</title> <!-- Sementara pakai hardcode karna belom ada urlbase baru -->
   <meta name="theme-color" content="#FF396F">
   <meta name="msapplication-navbutton-color" content="#FF396F">
   <meta name="apple-mobile-web-app-status-bar-style" content="#FF396F">
@@ -54,7 +54,7 @@ echo'
 <div class="loading"><div class="spinner-border text-primary" role="status"></div></div>
   <!-- loader -->
     <div id="loader">
-        <img src="'.$base_url.'sw-mod/sw-assets/img/SPM_SIAGA.png" alt="icon" class="loading-icon" style="width: 938px; height: 100px;">
+        <img src="'.$base_url.'sw-mod/sw-assets/img/SPM_SIAGA.png" alt="icon" class="loading-icon" style="width: 938px; height: 156px;">
     </div>
     <!-- * loader -->';
 if(isset($_COOKIE['COOKIES_MEMBER'])){
@@ -67,7 +67,7 @@ if(isset($_COOKIE['COOKIES_MEMBER'])){
             </a>
         </div>
         <div class="pageTitle">
-            <img src="'.$base_url.'sw-mod/sw-assets/img/SPM_SIAGA.png" alt="icon" class="logo">
+            <img src="'.$base_url.'sw-content/'.$site_logo.'" alt="logo" class="logo">
         </div>
         <div class="right">
             <div class="headerButton" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true">';
