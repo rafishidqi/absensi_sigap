@@ -8328,13 +8328,14 @@ b {
   #loader .loading-icon {
     width: 42px;
     height: auto;
-    animation: loadingAnimation 1s infinite; }
+    /* animation: loadingAnimation 1s infinite;  */
+  }
 
-@keyframes loadingAnimation {
+/* @keyframes loadingAnimation {
   0% {
     transform: rotate(0deg); }
   100% {
-    transform: rotate(360deg); } }
+    transform: rotate(360deg); } } */
 
 .badge {
   font-size: 12px;
