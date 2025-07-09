@@ -16,7 +16,7 @@ echo'
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dasboard | '.$site_name.'</title>
+  <title>Dasboard | Absensi #SIGAP</title> <!-- Sementara pakai hardcode karna belom ada urlbase untuk di admin .$site_name. -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="Pragma" content="no-cache">
@@ -24,10 +24,10 @@ echo'
   <meta name="googlebot" content="noindex">
   <meta name="mobile-web-app-capable" content="yes">
   
-  <link rel="shortcut icon" href="../sw-content/favicon.png">
-  <link rel="apple-touch-icon" href="../sw-content/favicon.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="../sw-content/favicon.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="../sw-content/favicon.png">
+  <link rel="shortcut icon" href="sw-assets/img/SPM_SIAGA2.png">
+  <link rel="apple-touch-icon" href="sw-assets/img/SPM_SIAGA2.png">">
+  <link rel="apple-touch-icon" sizes="72x72" href="sw-assets/img/SPM_SIAGA2.png">">
+  <link rel="apple-touch-icon" sizes="114x114" href="sw-assets/img/SPM_SIAGA2.png">>
   <link rel="stylesheet" href="./sw-assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="./sw-assets/css/AdminLTE.min.css">
   <link rel="stylesheet" href="./sw-assets/css/skin-green-light.min.css">
@@ -57,7 +57,8 @@ echo'<div class="wrapper">
     <!-- Logo -->
     <a href="./" class="logo">
       <span class="logo-mini"><b>ABSENSI</span>
-      <span class="logo-lg"><b>'.strtoupper($site_name).'</b></span>
+      <!-- Sementara pakai hardcode karna belom ada urlbase untuk di admin -->
+      <img src="sw-assets/img/SPM_SIAGA.png" alt="Logo" style="height: 30px;">
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
