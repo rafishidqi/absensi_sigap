@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jul 2025 pada 15.44
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.4
+-- Generation Time: Jul 09, 2025 at 08:09 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `building`
+-- Table structure for table `building`
 --
 
 CREATE TABLE `building` (
@@ -34,10 +34,10 @@ CREATE TABLE `building` (
   `address` varchar(100) NOT NULL,
   `latitude_longtitude` varchar(150) NOT NULL,
   `radius` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `building`
+-- Dumping data for table `building`
 --
 
 INSERT INTO `building` (`building_id`, `code`, `name`, `address`, `latitude_longtitude`, `radius`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `building` (`building_id`, `code`, `name`, `address`, `latitude_long
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cuty`
+-- Table structure for table `cuty`
 --
 
 CREATE TABLE `cuty` (
@@ -59,12 +59,12 @@ CREATE TABLE `cuty` (
   `cuty_total` int(5) NOT NULL,
   `cuty_description` varchar(100) NOT NULL,
   `cuty_status` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `employees`
+-- Table structure for table `employees`
 --
 
 CREATE TABLE `employees` (
@@ -79,10 +79,10 @@ CREATE TABLE `employees` (
   `photo` varchar(100) NOT NULL,
   `created_login` datetime NOT NULL,
   `created_cookies` varchar(70) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `employees`
+-- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`id`, `employees_code`, `employees_email`, `employees_password`, `employees_name`, `position_id`, `shift_id`, `building_id`, `photo`, `created_login`, `created_cookies`) VALUES
@@ -96,24 +96,25 @@ INSERT INTO `employees` (`id`, `employees_code`, `employees_email`, `employees_p
 (34, '1212010', 'pkl.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'PKL', 8, 1, 7, '2023-11-19e7ebd59a7ea637a44638610a0d89dcf1.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
 (35, '1212011', 'user.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'User', 1, 1, 7, '2023-11-19e7ebd59a7ea637a44638610a0d89dcf1.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
 (36, '12345', 'ikmalhanaanz31@gmail.com', 'd1321497453c5367f4f8987b3156319ace28da05e36163d91b82d200686f963d', 'Ikmal Hanaan Zikri', 8, 1, 8, '', '2025-07-07 20:13:23', '01c52a17cf38c3a4ba604838efe204a4'),
-(37, '1234567', 'hanaanz31@gmail.com', 'd1321497453c5367f4f8987b3156319ace28da05e36163d91b82d200686f963d', 'Saddan Husein', 8, 1, 8, '', '2025-07-07 20:13:23', '01c52a17cf38c3a4ba604838efe204a4');
+(37, '1234567', 'hanaanz31@gmail.com', 'd1321497453c5367f4f8987b3156319ace28da05e36163d91b82d200686f963d', 'Saddan Husein', 8, 1, 8, '', '2025-07-07 20:13:23', '01c52a17cf38c3a4ba604838efe204a4'),
+(38, '088773', 'asubehubada@gmail.com', '456a0c2bceaf0f6e9c9d67a82f67187e83034f576817c1f69718050def21b80c', 'supernigger', 8, 1, 8, '2025-07-07129cf53c7e62c2442726173aaed584e0.jpeg', '2025-07-07 22:16:27', '-');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `holiday`
+-- Table structure for table `holiday`
 --
 
 CREATE TABLE `holiday` (
   `holiday_id` int(11) NOT NULL,
   `holiday_date` date NOT NULL,
   `description` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `permission`
+-- Table structure for table `permission`
 --
 
 CREATE TABLE `permission` (
@@ -127,10 +128,10 @@ CREATE TABLE `permission` (
   `type` varchar(20) NOT NULL,
   `date` date NOT NULL,
   `status` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `permission`
+-- Dumping data for table `permission`
 --
 
 INSERT INTO `permission` (`permission_id`, `employees_id`, `permission_name`, `permission_date`, `permission_date_finish`, `permission_description`, `files`, `type`, `date`, `status`) VALUES
@@ -149,16 +150,16 @@ INSERT INTO `permission` (`permission_id`, `employees_id`, `permission_name`, `p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `position`
+-- Table structure for table `position`
 --
 
 CREATE TABLE `position` (
   `position_id` int(5) NOT NULL,
   `position_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `position`
+-- Dumping data for table `position`
 --
 
 INSERT INTO `position` (`position_id`, `position_name`) VALUES
@@ -168,7 +169,7 @@ INSERT INTO `position` (`position_id`, `position_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `presence`
+-- Table structure for table `presence`
 --
 
 CREATE TABLE `presence` (
@@ -183,10 +184,10 @@ CREATE TABLE `presence` (
   `latitude_longtitude_in` varchar(200) NOT NULL,
   `latitude_longtitude_out` varchar(200) NOT NULL,
   `information` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `presence`
+-- Dumping data for table `presence`
 --
 
 INSERT INTO `presence` (`presence_id`, `employees_id`, `presence_date`, `time_in`, `time_out`, `picture_in`, `picture_out`, `present_id`, `latitude_longtitude_in`, `latitude_longtitude_out`, `information`) VALUES
@@ -629,16 +630,16 @@ INSERT INTO `presence` (`presence_id`, `employees_id`, `presence_date`, `time_in
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `present_status`
+-- Table structure for table `present_status`
 --
 
 CREATE TABLE `present_status` (
   `present_id` int(6) NOT NULL,
   `present_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `present_status`
+-- Dumping data for table `present_status`
 --
 
 INSERT INTO `present_status` (`present_id`, `present_name`) VALUES
@@ -651,7 +652,7 @@ INSERT INTO `present_status` (`present_id`, `present_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `shift`
+-- Table structure for table `shift`
 --
 
 CREATE TABLE `shift` (
@@ -659,10 +660,10 @@ CREATE TABLE `shift` (
   `shift_name` varchar(20) NOT NULL,
   `time_in` time NOT NULL,
   `time_out` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `shift`
+-- Dumping data for table `shift`
 --
 
 INSERT INTO `shift` (`shift_id`, `shift_name`, `time_in`, `time_out`) VALUES
@@ -671,7 +672,7 @@ INSERT INTO `shift` (`shift_id`, `shift_name`, `time_in`, `time_out`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sw_site`
+-- Table structure for table `sw_site`
 --
 
 CREATE TABLE `sw_site` (
@@ -691,10 +692,10 @@ CREATE TABLE `sw_site` (
   `gmail_username` varchar(50) NOT NULL,
   `gmail_password` varchar(50) NOT NULL,
   `gmail_port` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `sw_site`
+-- Dumping data for table `sw_site`
 --
 
 INSERT INTO `sw_site` (`site_id`, `site_url`, `site_name`, `site_company`, `site_manager`, `site_director`, `site_phone`, `site_address`, `site_description`, `site_logo`, `site_email`, `site_email_domain`, `gmail_host`, `gmail_username`, `gmail_password`, `gmail_port`) VALUES
@@ -703,7 +704,28 @@ INSERT INTO `sw_site` (`site_id`, `site_url`, `site_name`, `site_company`, `site
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `tbl_checklist`
+--
+
+CREATE TABLE `tbl_checklist` (
+  `id_checklist` int(11) NOT NULL,
+  `nama_pekerjaan` varchar(200) NOT NULL,
+  `deskripsi_pekerjaan` text NOT NULL,
+  `kategori_pekerjaan` enum('Harian','Mingguan','Bulanan','Insidental') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_checklist`
+--
+
+INSERT INTO `tbl_checklist` (`id_checklist`, `nama_pekerjaan`, `deskripsi_pekerjaan`, `kategori_pekerjaan`) VALUES
+(2, 'asdas', 'dasdsa', 'Harian'),
+(3, 'sadam', 'sdsdzsd', 'Mingguan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -719,29 +741,29 @@ CREATE TABLE `user` (
   `ip` varchar(20) NOT NULL,
   `browser` varchar(30) NOT NULL,
   `level` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `fullname`, `registered`, `created_login`, `last_login`, `session`, `ip`, `browser`, `level`) VALUES
-(1, 'eydcom.com', 'id.eydcom@gmail.com', '36b491d1a1c41097f00a4148d39bed1d079190a4d0750b1b084c7459519e5546', 'EYD COMPUTER', '2025-07-07 18:46:03', '2025-07-07 20:25:25', '2025-07-07 20:43:46', '-', '127.0.0.1', 'Chrome', 1),
-(2, 'operator', 'operator.eydcom@gmail.com', '36b491d1a1c41097f00a4148d39bed1d079190a4d0750b1b084c7459519e5546', 'Operator', '2025-07-07 18:46:03', '2025-07-07 20:25:25', '2025-07-07 18:46:03', '-', '127.0.0.1', 'Chrome', 2);
+(1, 'eydcom.com', 'id.eydcom@gmail.com', '36b491d1a1c41097f00a4148d39bed1d079190a4d0750b1b084c7459519e5546', 'EYD COMPUTER', '2025-07-07 18:46:03', '2025-07-09 12:23:59', '2025-07-09 12:23:42', '-', '127.0.0.1', 'Chrome', 1),
+(2, 'operator', 'operator.eydcom@gmail.com', '36b491d1a1c41097f00a4148d39bed1d079190a4d0750b1b084c7459519e5546', 'Operator', '2025-07-07 18:46:03', '2025-07-09 12:23:59', '2025-07-09 10:32:57', '-', '127.0.0.1', 'Chrome', 2);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_level`
+-- Table structure for table `user_level`
 --
 
 CREATE TABLE `user_level` (
   `level_id` int(4) NOT NULL,
   `level_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_level`
+-- Dumping data for table `user_level`
 --
 
 INSERT INTO `user_level` (`level_id`, `level_name`) VALUES
@@ -753,149 +775,161 @@ INSERT INTO `user_level` (`level_id`, `level_name`) VALUES
 --
 
 --
--- Indeks untuk tabel `building`
+-- Indexes for table `building`
 --
 ALTER TABLE `building`
   ADD PRIMARY KEY (`building_id`);
 
 --
--- Indeks untuk tabel `cuty`
+-- Indexes for table `cuty`
 --
 ALTER TABLE `cuty`
   ADD PRIMARY KEY (`cuty_id`);
 
 --
--- Indeks untuk tabel `employees`
+-- Indexes for table `employees`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `holiday`
+-- Indexes for table `holiday`
 --
 ALTER TABLE `holiday`
   ADD PRIMARY KEY (`holiday_id`);
 
 --
--- Indeks untuk tabel `permission`
+-- Indexes for table `permission`
 --
 ALTER TABLE `permission`
   ADD PRIMARY KEY (`permission_id`);
 
 --
--- Indeks untuk tabel `position`
+-- Indexes for table `position`
 --
 ALTER TABLE `position`
   ADD PRIMARY KEY (`position_id`);
 
 --
--- Indeks untuk tabel `presence`
+-- Indexes for table `presence`
 --
 ALTER TABLE `presence`
   ADD PRIMARY KEY (`presence_id`);
 
 --
--- Indeks untuk tabel `present_status`
+-- Indexes for table `present_status`
 --
 ALTER TABLE `present_status`
   ADD PRIMARY KEY (`present_id`);
 
 --
--- Indeks untuk tabel `shift`
+-- Indexes for table `shift`
 --
 ALTER TABLE `shift`
   ADD PRIMARY KEY (`shift_id`);
 
 --
--- Indeks untuk tabel `sw_site`
+-- Indexes for table `sw_site`
 --
 ALTER TABLE `sw_site`
   ADD PRIMARY KEY (`site_id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `tbl_checklist`
+--
+ALTER TABLE `tbl_checklist`
+  ADD PRIMARY KEY (`id_checklist`);
+
+--
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indeks untuk tabel `user_level`
+-- Indexes for table `user_level`
 --
 ALTER TABLE `user_level`
   ADD PRIMARY KEY (`level_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `building`
+-- AUTO_INCREMENT for table `building`
 --
 ALTER TABLE `building`
   MODIFY `building_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `cuty`
+-- AUTO_INCREMENT for table `cuty`
 --
 ALTER TABLE `cuty`
   MODIFY `cuty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `employees`
+-- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT untuk tabel `holiday`
+-- AUTO_INCREMENT for table `holiday`
 --
 ALTER TABLE `holiday`
   MODIFY `holiday_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `permission`
+-- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
   MODIFY `permission_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT untuk tabel `position`
+-- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
   MODIFY `position_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `presence`
+-- AUTO_INCREMENT for table `presence`
 --
 ALTER TABLE `presence`
   MODIFY `presence_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=445;
 
 --
--- AUTO_INCREMENT untuk tabel `present_status`
+-- AUTO_INCREMENT for table `present_status`
 --
 ALTER TABLE `present_status`
   MODIFY `present_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `shift`
+-- AUTO_INCREMENT for table `shift`
 --
 ALTER TABLE `shift`
   MODIFY `shift_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `sw_site`
+-- AUTO_INCREMENT for table `sw_site`
 --
 ALTER TABLE `sw_site`
   MODIFY `site_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `tbl_checklist`
+--
+ALTER TABLE `tbl_checklist`
+  MODIFY `id_checklist` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `user_level`
+-- AUTO_INCREMENT for table `user_level`
 --
 ALTER TABLE `user_level`
   MODIFY `level_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
