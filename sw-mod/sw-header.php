@@ -33,7 +33,11 @@ echo'
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/magnific-popup/magnific-popup.css">
+
+  <script src="'.$base_url.'/sw-mod/sw-assets/js/lib/jquery-3.4.1.min.js"></script>
+  <script src="'.$base_url.'/sw-mod/sw-assets/js/lib/bootstrap.min.js"></script>
   
 </head>';
 
@@ -51,6 +55,30 @@ echo'<body>';
 echo'
 
 <body>
+
+<!-- Modal Setting -->
+<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="settingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="settingModalLabel">Pengaturan Logo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form-ganti-logo" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="logo">Pilih Logo Baru</label>
+            <input type="file" class="form-control-file" id="logo" name="logo">
+          </div>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- * Modal Setting -->
 <div class="loading"><div class="spinner-border text-primary" role="status"></div></div>
   <!-- loader -->
     <div id="loader">
@@ -79,6 +107,9 @@ if(isset($_COOKIE['COOKIES_MEMBER'])){
               echo'
                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';?>
                 <a class="dropdown-item" onclick="location.href='./profile';" href="./profile"><ion-icon size="small" name="person-outline"></ion-icon>Profil</a>
+                <a class="dropdown-item" href="#" id="open-setting-modal">
+                    <ion-icon size="small" name="settings-outline"></ion-icon> Setting
+                </a>
                 <a class="dropdown-item" onclick="location.href='./logout';" href="./logout"><ion-icon size="small" name="log-out-outline"></ion-icon>Keluar</a>
               </div>
             </div>
@@ -171,6 +202,15 @@ echo'<!-- App Sidebar -->
                             </a>
                         </li>
 
+                        <li>
+                            <a href="setting" class="item">
+                                <div class="icon-box bg-danger">
+                                    <ion-icon name="settings-outline"></ion-icon>
+                                </div>
+                                    setting
+                            </a>
+                        </li>
+
                         </li>
                         <li>
                             <a href="./logout" class="item">
@@ -190,3 +230,34 @@ echo'<!-- App Sidebar -->
     <!-- * App Sidebar -->';
   }
  }?>
+
+<!-- Script jQuery untuk buka modal -->
+<script>
+  $(document).ready(function () {
+    $('#open-setting-modal').on('click', function (e) {
+      e.preventDefault();
+      $('#settingModal').modal('show');
+    });
+  });
+
+  $('#form-ganti-logo').on('submit', function (e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+      url: 'sw-mod/upload_logo.php',
+      type: 'POST',
+      data: formData,
+      success: function (res) {
+        var data = JSON.parse(res);
+        alert(data.message);
+        if (data.status === 'success') {
+          location.reload(); // agar logo baru langsung tampil
+        }
+      },
+      cache: false,
+      contentType: false,
+      processData: false
+    });
+  });
+</script>
