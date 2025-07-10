@@ -2,6 +2,8 @@
   header('location:./404');
 } else {
   ob_start("minify_html");
+
+
 echo'
 <!DOCTYPE html>
 <html>
@@ -38,6 +40,8 @@ echo'
 
   <script src="'.$base_url.'/sw-mod/sw-assets/js/lib/jquery-3.4.1.min.js"></script>
   <script src="'.$base_url.'/sw-mod/sw-assets/js/lib/bootstrap.min.js"></script>
+
+  
   
 </head>';
 
@@ -68,10 +72,15 @@ echo'
       </div>
       <div class="modal-body">
         <form id="form-ganti-logo" enctype="multipart/form-data">
-          <div class="form-group">
-            <label for="logo">Pilih Logo Baru</label>
-            <input type="file" class="form-control-file" id="logo" name="logo">
-          </div>
+            <div class="form-group">
+                <label for="theme_color">Pilih Warna Tema</label>
+                <input type="color" class="form-control" id="theme_color" name="theme_color" value="'.$theme_color.'">
+            </div>
+            <div class="form-group">
+                <label for="logo">Pilih Logo Baru</label>
+                <input type="file" class="form-control-file" id="logo" name="logo">
+            </div>
+            
           <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
       </div>
@@ -82,7 +91,7 @@ echo'
 <div class="loading"><div class="spinner-border text-primary" role="status"></div></div>
   <!-- loader -->
     <div id="loader">
-        <img src="'.$base_url.'sw-mod/sw-assets/img/SPM_SIAGA.png" alt="icon" class="loading-icon" style="width: 938px; height: 156px;">
+        <img src="'.$base_url.'sw-content/'.$site_logo.'" alt="icon" class="loading-icon" style="max-width: 100%; max-height: 100%; height: auto; width: auto; display: block; margin: 0 auto;">
     </div>
     <!-- * loader -->';
 if(isset($_COOKIE['COOKIES_MEMBER'])){
@@ -261,3 +270,22 @@ echo'<!-- App Sidebar -->
     });
   });
 </script>
+
+
+<style>
+  :root {
+    --main-theme: <?php echo $theme_color; ?>;
+  }
+
+  .bg-danger {
+    background-color: var(--main-theme) !important;
+  }
+
+  .icon-box.bg-danger {
+    background-color: var(--main-theme) !important;
+  }
+
+  .appHeader.bg-danger {
+    background-color: var(--main-theme) !important;
+  }
+</style>

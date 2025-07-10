@@ -28,7 +28,8 @@
   --danger:#dc3545;
   --light:#f8f9fa;
   --dark:#343a40;
-  --bg-danger:#FF396F;
+  /* --bg-danger:#FF396F; diubah*/
+  --bg-danger:var(--main-theme);
   --breakpoint-xs:0;
   --breakpoint-sm:576px;
   --breakpoint-md:768px;

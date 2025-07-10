@@ -38,6 +38,7 @@
   $meta_keyword       = $row_site['site_description'];
   $website_logo       = $row_site['site_logo'];
   $website_email      = $row_site['site_email'];
+  $theme_color        = $row_site['theme_color'];
 
   if(!empty($_GET['alert'])){$alert = mysqli_escape_string($connection, @$_GET['alert']);}
   $messages ='';if(!empty($_SESSION['messages'])){$messages = $_SESSION['messages'];}
