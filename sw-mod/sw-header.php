@@ -60,34 +60,7 @@ echo'
 
 <body>
 
-<!-- Modal Setting -->
-<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="settingModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="settingModalLabel">Pengaturan Logo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="form-ganti-logo" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="theme_color">Pilih Warna Tema</label>
-                <input type="color" class="form-control" id="theme_color" name="theme_color" value="'.$theme_color.'">
-            </div>
-            <div class="form-group">
-                <label for="logo">Pilih Logo Baru</label>
-                <input type="file" class="form-control-file" id="logo" name="logo">
-            </div>
-            
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- * Modal Setting -->
+
 <div class="loading"><div class="spinner-border text-primary" role="status"></div></div>
   <!-- loader -->
     <div id="loader">
@@ -116,9 +89,7 @@ if(isset($_COOKIE['COOKIES_MEMBER'])){
               echo'
                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';?>
                 <a class="dropdown-item" onclick="location.href='./profile';" href="./profile"><ion-icon size="small" name="person-outline"></ion-icon>Profil</a>
-                <a class="dropdown-item" href="#" id="open-setting-modal">
-                    <ion-icon size="small" name="settings-outline"></ion-icon> Setting
-                </a>
+
                 <a class="dropdown-item" onclick="location.href='./logout';" href="./logout"><ion-icon size="small" name="log-out-outline"></ion-icon>Keluar</a>
               </div>
             </div>
@@ -210,16 +181,6 @@ echo'<!-- App Sidebar -->
                                     Profil
                             </a>
                         </li>
-
-                        <li>
-                            <a href="setting" class="item">
-                                <div class="icon-box bg-danger">
-                                    <ion-icon name="settings-outline"></ion-icon>
-                                </div>
-                                    setting
-                            </a>
-                        </li>
-
                         </li>
                         <li>
                             <a href="./logout" class="item">
