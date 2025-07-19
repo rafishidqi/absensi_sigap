@@ -22,7 +22,9 @@ RewriteRule ^cuty/print$ sw-mod/cuty/print.php
 
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php?mod=$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?mod=$1&%{QUERY_STRING} [L]
+
 
 <IfModule mod_gzip.c>
 mod_gzip_on Yes

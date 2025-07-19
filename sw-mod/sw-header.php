@@ -2,6 +2,8 @@
   header('location:./404');
 } else {
   ob_start("minify_html");
+
+
 echo'
 <!DOCTYPE html>
 <html>
@@ -33,7 +35,13 @@ echo'
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/magnific-popup/magnific-popup.css">
+
+  <script src="'.$base_url.'/sw-mod/sw-assets/js/lib/jquery-3.4.1.min.js"></script>
+  <script src="'.$base_url.'/sw-mod/sw-assets/js/lib/bootstrap.min.js"></script>
+
+  
   
 </head>';
 
@@ -51,10 +59,12 @@ echo'<body>';
 echo'
 
 <body>
+
+
 <div class="loading"><div class="spinner-border text-primary" role="status"></div></div>
   <!-- loader -->
     <div id="loader">
-        <img src="'.$base_url.'sw-mod/sw-assets/img/SPM_SIAGA.png" alt="icon" class="loading-icon" style="width: 938px; height: 156px;">
+        <img src="'.$base_url.'sw-content/'.$site_logo.'" alt="icon" class="loading-icon" style="max-width: 100%; max-height: 100%; height: auto; width: auto; display: block; margin: 0 auto;">
     </div>
     <!-- * loader -->';
 if(isset($_COOKIE['COOKIES_MEMBER'])){
@@ -79,6 +89,7 @@ if(isset($_COOKIE['COOKIES_MEMBER'])){
               echo'
                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';?>
                 <a class="dropdown-item" onclick="location.href='./profile';" href="./profile"><ion-icon size="small" name="person-outline"></ion-icon>Profil</a>
+
                 <a class="dropdown-item" onclick="location.href='./logout';" href="./logout"><ion-icon size="small" name="log-out-outline"></ion-icon>Keluar</a>
               </div>
             </div>
@@ -170,7 +181,6 @@ echo'<!-- App Sidebar -->
                                     Profil
                             </a>
                         </li>
-
                         </li>
                         <li>
                             <a href="./logout" class="item">
@@ -190,3 +200,53 @@ echo'<!-- App Sidebar -->
     <!-- * App Sidebar -->';
   }
  }?>
+
+<!-- Script jQuery untuk buka modal -->
+<script>
+  $(document).ready(function () {
+    $('#open-setting-modal').on('click', function (e) {
+      e.preventDefault();
+      $('#settingModal').modal('show');
+    });
+  });
+
+  $('#form-ganti-logo').on('submit', function (e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+      url: 'sw-mod/upload_logo.php',
+      type: 'POST',
+      data: formData,
+      success: function (res) {
+        var data = JSON.parse(res);
+        alert(data.message);
+        if (data.status === 'success') {
+          location.reload(); // agar logo baru langsung tampil
+        }
+      },
+      cache: false,
+      contentType: false,
+      processData: false
+    });
+  });
+</script>
+
+
+<style>
+  :root {
+    --main-theme: <?php echo $theme_color; ?>;
+  }
+
+  .bg-danger {
+    background-color: var(--main-theme) !important;
+  }
+
+  .icon-box.bg-danger {
+    background-color: var(--main-theme) !important;
+  }
+
+  .appHeader.bg-danger {
+    background-color: var(--main-theme) !important;
+  }
+</style>

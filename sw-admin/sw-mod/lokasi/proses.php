@@ -1,154 +1,46 @@
 <?php
 session_start();
-if(empty($_SESSION['SESSION_USER']) && empty($_SESSION['SESSION_ID'])){
-    header('location:../../login/');
- exit;}
-else {
-require_once'../../../sw-library/sw-config.php';
-require_once'../../login/login_session.php';
-include('../../../sw-library/sw-function.php'); 
+require_once '../../../sw-library/sw-config.php';
 
-switch (@$_GET['action']){
-case 'add':
-  $error = array();
-  
-  if (empty($_POST['name'])) {
-      $error[] = 'tidak boleh kosong';
+
+if (@$_GET['action'] == 'simpan') {
+    $nama      = mysqli_real_escape_string($connection, $_POST['nama_lokasi']);
+    $deskripsi = mysqli_real_escape_string($connection, $_POST['deskripsi_lokasi']);
+    $koordinat = mysqli_real_escape_string($connection, $_POST['koordinat_gps']);
+
+    $sql = "INSERT INTO tbl_lokasi (nama_lokasi, deskripsi_lokasi, koordinat_gps)
+            VALUES ('$nama', '$deskripsi', '$koordinat')";
+
+    if (mysqli_query($connection, $sql)) {
+        echo '<script>alert("Data berhasil ditambahkan."); window.location.href="lokasi.php";</script>';
     } else {
-      $name = mysqli_real_escape_string($connection, $_POST['name']);
-  }
-
-  if (empty($_POST['address'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $address= mysqli_real_escape_string($connection, $_POST['address']);
-  }
-
-  if (empty($_POST['latitude'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $latitude= mysqli_real_escape_string($connection, $_POST['latitude']);
-  }
-
-  if (empty($_POST['longitude'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $longitude= mysqli_real_escape_string($connection, $_POST['longitude']);
-  }
-
-  if (empty($_POST['radius'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $radius= mysqli_real_escape_string($connection, $_POST['radius']);
-  }
-
-
-      /* --  Membuat Random Karakter ---- */
-      $random_karakter = md5($name);
-      $shuffle  = substr(str_shuffle($random_karakter),0,5);
-      $code   = ''.$year.'/'.strtoupper($shuffle).'/'.$date.'';
-      /* --  End Random Karakter ---- */
-      
-  if (empty($error)) { 
-    $latitude_longtitude = ''.$latitude.','.$longitude.'';
-    $add ="INSERT INTO  building (code,
-                        name,
-                        address,
-                        latitude_longtitude,
-                        radius) values('$code',
-                        '$name',
-                        '$address',
-                        '$latitude_longtitude',
-                        '$radius')"; 
-    if($connection->query($add) === false) { 
-        die($connection->error.__LINE__); 
-        echo'Data tidak berhasil disimpan!';
-    } else{
-        echo'success';
-    }}
-    else{           
-        echo'Bidang inputan masih ada yang kosong..!';
+        echo '<script>alert("Gagal menyimpan data."); window.history.back();</script>';
     }
-break;
-
-/* ------------------------------
-    Update
----------------------------------*/
-case 'update':
- $error = array();
-   if (empty($_POST['id'])) {
-      $error[] = 'ID tidak boleh kosong';
-    } else {
-      $id = mysqli_real_escape_string($connection, $_POST['id']);
-  }
-
-  if (empty($_POST['name'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $name= mysqli_real_escape_string($connection, $_POST['name']);
-  }
-
-  if (empty($_POST['address'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $address= mysqli_real_escape_string($connection, $_POST['address']);
-  }
-
-  if (empty($_POST['latitude'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $latitude= mysqli_real_escape_string($connection, $_POST['latitude']);
-  }
-
-  if (empty($_POST['longitude'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $longitude= mysqli_real_escape_string($connection, $_POST['longitude']);
-  }
-
-  if (empty($_POST['radius'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $radius= mysqli_real_escape_string($connection, $_POST['radius']);
-  }
-
-  if (empty($error)) { 
-     $latitude_longtitude = ''.$latitude.','.$longitude.'';
-    $update="UPDATE building SET name='$name',
-            address='$address',
-            latitude_longtitude='$latitude_longtitude',
-            radius='$radius' WHERE building_id='$id'"; 
-    if($connection->query($update) === false) { 
-        die($connection->error.__LINE__); 
-        echo'Data tidak berhasil disimpan!';
-    } else{
-        echo'success';
-    }}
-    else{           
-        echo'Bidang inputan tidak boleh ada yang kosong..!';
-    }
-
-break;
-/* --------------- Delete ------------*/
-case 'delete':
-  $id       = mysqli_real_escape_string($connection,epm_decode($_POST['id']));
-  $query ="SELECT building.building_id,employees.building_id FROM building,employees WHERE building.building_id=employees.building_id AND employees.building_id='$id'";
-  $result = $connection->query($query);
-  if(!$result->num_rows > 0){
-    $deleted  = "DELETE FROM building WHERE building_id='$id'";
-    if($connection->query($deleted) === true) {
-        echo'success';
-      } else { 
-        //tidak berhasil
-        echo'Data tidak berhasil dihapus.!';
-        die($connection->error.__LINE__);
-       
-    }
-  }else{
-      echo'Lokasi digunakan, Data tidak dapat dihapus.!';
-    }
-break;
-
 }
 
+
+if (@$_GET['action'] == 'update') {
+    $id_lokasi = intval($_POST['id_lokasi']);
+    $nama      = mysqli_real_escape_string($connection, $_POST['nama_lokasi']);
+    $deskripsi = mysqli_real_escape_string($connection, $_POST['deskripsi_lokasi']);
+    $koordinat = mysqli_real_escape_string($connection, $_POST['koordinat_gps']);
+
+    $sql = "UPDATE tbl_lokasi 
+            SET nama_lokasi = '$nama', 
+                deskripsi_lokasi = '$deskripsi', 
+                koordinat_gps = '$koordinat' 
+            WHERE id_lokasi = '$id_lokasi'";
+
+    if (mysqli_query($connection, $sql)) {
+        echo '<script>alert("Data berhasil diperbarui."); window.location.href="lokasi.php";</script>';
+    } else {
+        echo '<script>alert("Gagal memperbarui data."); window.history.back();</script>';
+    }
+}
+
+
+if (@$_GET['action'] == 'delete') {
+    $id = intval($_POST['id']);
+    $query = "DELETE FROM tbl_lokasi WHERE id_lokasi='$id'";
+    echo (mysqli_query($connection, $query)) ? 'success' : 'Gagal menghapus data.';
 }

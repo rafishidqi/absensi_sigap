@@ -1,5 +1,4 @@
 <?php 
-
 if ($mod == ''){
     header('location:../404');
     echo 'kosong';

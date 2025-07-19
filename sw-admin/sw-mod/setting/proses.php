@@ -54,6 +54,12 @@ if (empty($_POST['site_email_domain'])) {
 }
 
 
+if (empty($_POST['theme_color'])) {
+  $error[] = 'tidak boleh kosong';
+} else {
+  $theme_color = mysqli_real_escape_string($connection,$_POST['theme_color']);
+}
+
 if (empty($_POST['site_url'])) {
   $error[] = 'tidak boleh kosong';
 } else {
@@ -73,6 +79,7 @@ if($site_logo == ''){
                       site_address='$site_address',
                       site_description='$site_description',
                       site_email='$site_email',
+                      theme_color='$theme_color',
                       site_email_domain='$site_email_domain' WHERE site_id='1'"; 
     if($connection->query($update) === false) { 
       die($connection->error.__LINE__); 
@@ -110,6 +117,7 @@ if($ukuran_file < 1044070){
                       site_description='$site_description',
                       site_logo='$nama_file_unik',
                       site_email='$site_email',
+                      theme_color='$theme_color',
                       site_email_domain='$site_email_domain' WHERE site_id='1'" or die($connection->error.__LINE__); 
       if($connection->query($update) === false) { 
         echo'Data tidak berhasil disimpan!';
