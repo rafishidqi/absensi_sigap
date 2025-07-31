@@ -10,22 +10,19 @@ if (empty($_SESSION['SESSION_USER']) && empty($_SESSION['SESSION_ID'])) {
 
     header('Content-Type: application/json');
 
-    
-    $aColumns = ['id_lokasi', 'nama_lokasi', 'deskripsi_lokasi', 'koordinat_gps'];
+    // Tambahkan kolom radius
+    $aColumns = ['id_lokasi', 'nama_lokasi', 'deskripsi_lokasi', 'koordinat_gps', 'radius'];
     $sIndexColumn = "id_lokasi";
     $sTable = "tbl_lokasi";
 
     $db = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
 
-    
     $sLimit = "";
     if (isset($_GET['start']) && $_GET['length'] != '-1') {
         $sLimit = "LIMIT " . intval($_GET['start']) . ", " . intval($_GET['length']);
     }
 
-    
     $sOrder = "ORDER BY id_lokasi DESC";
-
 
     $sWhere = "";
     if (!empty($_GET['search']['value'])) {
@@ -36,14 +33,10 @@ if (empty($_SESSION['SESSION_USER']) && empty($_SESSION['SESSION_ID'])) {
         $sWhere = rtrim($sWhere, " OR ");
     }
 
-    
     $sQuery = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $aColumns) . " FROM $sTable $sWhere $sOrder $sLimit";
     $rResult = $db->query($sQuery);
 
-    
     $iFilteredTotal = $db->query("SELECT FOUND_ROWS()")->fetch_row()[0];
-
-    
     $iTotal = $db->query("SELECT COUNT($sIndexColumn) FROM $sTable")->fetch_row()[0];
 
     $output = [
@@ -59,8 +52,8 @@ if (empty($_SESSION['SESSION_USER']) && empty($_SESSION['SESSION_ID'])) {
         $no++;
         $id = $row['id_lokasi'];
         $aksi = '
-        <a href="?op=edit&id='.$row['id_lokasi'].'" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-        <button class="btn btn-xs btn-danger delete" data-id="'.$row['id_lokasi'].'"><i class="fa fa-trash"></i></button>
+        <a href="?op=edit&id='.$id.'" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+        <button class="btn btn-xs btn-danger delete" data-id="'.$id.'"><i class="fa fa-trash"></i></button>
         ';
 
         $output['data'][] = [
@@ -68,6 +61,7 @@ if (empty($_SESSION['SESSION_USER']) && empty($_SESSION['SESSION_ID'])) {
             htmlspecialchars($row['nama_lokasi']),
             htmlspecialchars($row['deskripsi_lokasi']),
             '<code>' . $row['koordinat_gps'] . '</code>',
+            '<span>' . intval($row['radius']) . ' m</span>',
             '<div class="text-center">' . $aksi . '</div>'
         ];
     }

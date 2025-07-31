@@ -10,8 +10,8 @@ if (empty($connection)) {
   $op = isset($_GET['op']) ? $_GET['op'] : '';
 
   switch ($op) {
-    case 'tambah':
-      echo '
+case 'tambah':
+  echo '
 <section class="content-header">
   <h1>Tambah<small> Lokasi Baru</small></h1>
   <ol class="breadcrumb">
@@ -46,6 +46,11 @@ if (empty($connection)) {
               <div id="map" style="height:400px; margin-top:10px; border:1px solid #ccc;"></div>
             </div>
 
+            <div class="form-group">
+              <label>Radius (meter)</label>
+              <input type="number" name="radius" id="radius" class="form-control" min="0" value="0">
+            </div>
+
             <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
             <a href="?op" class="btn btn-default">Kembali</a>
           </form>
@@ -60,39 +65,50 @@ if (empty($connection)) {
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
   var map = L.map("map").setView([-6.9175, 107.6191], 13); // Default Bandung
-
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; <a href=\'https://www.openstreetmap.org/\'>OpenStreetMap</a> contributors"
   }).addTo(map);
 
-  var marker;
+  var marker, circle;
 
   function onMapClick(e) {
-    var latlng = e.latlng.lat + "," + e.latlng.lng;
-    document.getElementById("koordinat_gps").value = latlng;
+    var latlng = e.latlng;
+    document.getElementById("koordinat_gps").value = latlng.lat + "," + latlng.lng;
 
-    if (marker) {
-      map.removeLayer(marker);
+    if (marker) map.removeLayer(marker);
+    if (circle) map.removeLayer(circle);
+
+    marker = L.marker(latlng).addTo(map);
+    var radius = parseInt(document.getElementById("radius").value) || 0;
+    if (radius > 0) {
+      circle = L.circle(latlng, { radius: radius, color: "blue", fillOpacity: 0.2 }).addTo(map);
     }
-
-    marker = L.marker(e.latlng).addTo(map);
   }
+
+  document.getElementById("radius").addEventListener("input", function () {
+    if (!marker) return;
+    if (circle) map.removeLayer(circle);
+    var radius = parseInt(this.value) || 0;
+    if (radius > 0) {
+      circle = L.circle(marker.getLatLng(), { radius: radius, color: "blue", fillOpacity: 0.2 }).addTo(map);
+    }
+  });
 
   map.on("click", onMapClick);
 </script>';
       break;
 
-    case 'edit':
-      $id_lokasi = isset($_GET['id']) ? intval($_GET['id']) : 0;
-      $query = mysqli_query($connection, "SELECT * FROM tbl_lokasi WHERE id_lokasi = '$id_lokasi'");
-      $data = mysqli_fetch_assoc($query);
+case 'edit':
+  $id_lokasi = isset($_GET['id']) ? intval($_GET['id']) : 0;
+  $query = mysqli_query($connection, "SELECT * FROM tbl_lokasi WHERE id_lokasi = '$id_lokasi'");
+  $data = mysqli_fetch_assoc($query);
 
-      if (!$data) {
-        echo "<script>alert('Data tidak ditemukan!'); window.location='?op';</script>";
-        exit();
-      }
+  if (!$data) {
+    echo "<script>alert('Data tidak ditemukan!'); window.location='?op';</script>";
+    exit();
+  }
 
-      echo '
+  echo '
 <section class="content-header">
   <h1>Edit<small> Lokasi</small></h1>
   <ol class="breadcrumb">
@@ -129,6 +145,11 @@ if (empty($connection)) {
               <div id="map" style="height:400px; margin-top:10px; border:1px solid #ccc;"></div>
             </div>
 
+            <div class="form-group">
+              <label>Radius (meter)</label>
+              <input type="number" name="radius" id="radius" class="form-control" min="0" value="'.intval($data['radius']).'">
+            </div>
+
             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
             <a href="?op" class="btn btn-default">Kembali</a>
           </form>
@@ -144,29 +165,46 @@ if (empty($connection)) {
   var koordinat = "'.$data['koordinat_gps'].'".split(",");
   var lat = parseFloat(koordinat[0]);
   var lng = parseFloat(koordinat[1]);
+  var radiusValue = parseInt("'.$data['radius'].'") || 0;
 
   var map = L.map("map").setView([lat, lng], 13);
-
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; <a href=\'https://www.openstreetmap.org/\'>OpenStreetMap</a> contributors"
   }).addTo(map);
 
   var marker = L.marker([lat, lng]).addTo(map);
+  var circle = null;
+
+  if (radiusValue > 0) {
+    circle = L.circle([lat, lng], { radius: radiusValue, color: "blue", fillOpacity: 0.2 }).addTo(map);
+  }
 
   function onMapClick(e) {
-    var latlng = e.latlng.lat + "," + e.latlng.lng;
-    document.getElementById("koordinat_gps").value = latlng;
+    var latlng = e.latlng;
+    document.getElementById("koordinat_gps").value = latlng.lat + "," + latlng.lng;
 
-    if (marker) {
-      map.removeLayer(marker);
+    if (marker) map.removeLayer(marker);
+    if (circle) map.removeLayer(circle);
+
+    marker = L.marker(latlng).addTo(map);
+    var radius = parseInt(document.getElementById("radius").value) || 0;
+    if (radius > 0) {
+      circle = L.circle(latlng, { radius: radius, color: "blue", fillOpacity: 0.2 }).addTo(map);
     }
-
-    marker = L.marker(e.latlng).addTo(map);
   }
+
+  document.getElementById("radius").addEventListener("input", function () {
+    if (!marker) return;
+    if (circle) map.removeLayer(circle);
+    var radius = parseInt(this.value) || 0;
+    if (radius > 0) {
+      circle = L.circle(marker.getLatLng(), { radius: radius, color: "blue", fillOpacity: 0.2 }).addTo(map);
+    }
+  });
 
   map.on("click", onMapClick);
 </script>';
-      break;
+break;
 
 
     default:
@@ -198,6 +236,7 @@ if (empty($connection)) {
                   <th>Nama Lokasi</th>
                   <th>Deskripsi</th>
                   <th>Koordinat GPS</th>
+                  <th>Radius</th>
                   <th class="text-center" style="width:150px">Aksi</th>
                 </tr>
               </thead>
@@ -234,7 +273,8 @@ $(document).ready(function(){
       { "data": 1 },
       { "data": 2 },
       { "data": 3 },
-      { "data": 4 }
+      { "data": 4 },
+      { "data": 5 }
     ]
   });
 

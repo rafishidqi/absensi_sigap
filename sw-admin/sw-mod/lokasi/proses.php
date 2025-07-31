@@ -2,14 +2,14 @@
 session_start();
 require_once '../../../sw-library/sw-config.php';
 
-
 if (@$_GET['action'] == 'simpan') {
     $nama      = mysqli_real_escape_string($connection, $_POST['nama_lokasi']);
     $deskripsi = mysqli_real_escape_string($connection, $_POST['deskripsi_lokasi']);
     $koordinat = mysqli_real_escape_string($connection, $_POST['koordinat_gps']);
+    $radius    = intval($_POST['radius']); // ambil nilai radius
 
-    $sql = "INSERT INTO tbl_lokasi (nama_lokasi, deskripsi_lokasi, koordinat_gps)
-            VALUES ('$nama', '$deskripsi', '$koordinat')";
+    $sql = "INSERT INTO tbl_lokasi (nama_lokasi, deskripsi_lokasi, koordinat_gps, radius)
+            VALUES ('$nama', '$deskripsi', '$koordinat', '$radius')";
 
     if (mysqli_query($connection, $sql)) {
         echo '<script>alert("Data berhasil ditambahkan."); window.location.href="lokasi.php";</script>';
@@ -18,17 +18,18 @@ if (@$_GET['action'] == 'simpan') {
     }
 }
 
-
 if (@$_GET['action'] == 'update') {
     $id_lokasi = intval($_POST['id_lokasi']);
     $nama      = mysqli_real_escape_string($connection, $_POST['nama_lokasi']);
     $deskripsi = mysqli_real_escape_string($connection, $_POST['deskripsi_lokasi']);
     $koordinat = mysqli_real_escape_string($connection, $_POST['koordinat_gps']);
+    $radius    = intval($_POST['radius']); // ambil nilai radius
 
     $sql = "UPDATE tbl_lokasi 
             SET nama_lokasi = '$nama', 
                 deskripsi_lokasi = '$deskripsi', 
-                koordinat_gps = '$koordinat' 
+                koordinat_gps = '$koordinat',
+                radius = '$radius'
             WHERE id_lokasi = '$id_lokasi'";
 
     if (mysqli_query($connection, $sql)) {
@@ -37,7 +38,6 @@ if (@$_GET['action'] == 'update') {
         echo '<script>alert("Gagal memperbarui data."); window.history.back();</script>';
     }
 }
-
 
 if (@$_GET['action'] == 'delete') {
     $id = intval($_POST['id']);
