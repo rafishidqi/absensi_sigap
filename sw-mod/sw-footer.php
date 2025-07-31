@@ -26,6 +26,13 @@ echo'
             </div>
         </a>
 
+        <a href="./patroli" class="item">
+            <div class="col">
+                 <ion-icon name="document-text-outline"></ion-icon>
+                <strong>Patroli</strong>
+            </div>
+        </a>
+
         <a href="./history" class="item">
             <div class="col">
                  <ion-icon name="document-text-outline"></ion-icon>

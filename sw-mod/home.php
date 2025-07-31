@@ -106,6 +106,15 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                             <strong>Cuti</strong>
                         </a>
                     </div>
+
+                    <div class="item">
+                        <a href="./patroli">
+                            <div class="icon-wrapper bg-success">
+                               <ion-icon name="document-text-outline"></ion-icon>
+                            </div>
+                            <strong>Patroli</strong>
+                        </a>
+                    </div>
                    
                     <div class="item">
                         <a href="./history">
