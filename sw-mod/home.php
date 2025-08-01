@@ -1,11 +1,11 @@
-<?php 
-if ($mod ==''){
+<?php
+if ($mod == '') {
     header('location:../404');
-    echo'kosong';
-}else{
+    echo 'kosong';
+} else {
     include_once 'sw-mod/sw-header.php';
-if(!isset($_COOKIE['COOKIES_MEMBER'])){
- echo'
+    if (!isset($_COOKIE['COOKIES_MEMBER'])) {
+        echo '
  <!-- App Capsule -->
     <div id="appCapsule">
 
@@ -53,10 +53,9 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
     </div>
 </div>
     <!-- * App Capsule -->';
-}
-  else{
+    } else {
 
-  echo'<!-- App Capsule -->
+        echo '<!-- App Capsule -->
     <div id="appCapsule">
         <!-- Wallet Card -->
         <div class="section wallet-card-section pt-1">
@@ -64,18 +63,18 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                 <!-- Balance -->
                 <div class="balance">
                     <div class="left">
-                        <span class="title"> Selamat '.$salam.'</span>
-                        <h1 class="total">'.ucfirst($row_user['employees_name']).'</h1>
+                        <span class="title"> Selamat ' . $salam . '</span>
+                        <h1 class="total">' . ucfirst($row_user['employees_name']) . '</h1>
                     </div>';
-                if($result_shift->num_rows > 0){
-                    $row_shift = $result_shift->fetch_assoc();
-                    echo'
+        if ($result_shift->num_rows > 0) {
+            $row_shift = $result_shift->fetch_assoc();
+            echo '
                     <div class="left">
                         <h4>Jam Kerja</h4>
-                        <p>'.$row_shift['time_in'].' - '.$row_shift['time_out'].'</p>
+                        <p>' . $row_shift['time_in'] . ' - ' . $row_shift['time_out'] . '</p>
                     </div>';
-                }
-                echo'
+        }
+        echo '
                 </div>
                 <!-- * Balance -->
                 <!-- Wallet Footer -->
@@ -104,6 +103,15 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                                <ion-icon name="calendar-outline"></ion-icon>
                             </div>
                             <strong>Cuti</strong>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="./patroli">
+                            <div class="icon-wrapper bg-success">
+                               <ion-icon name="document-text-outline"></ion-icon>
+                            </div>
+                            <strong>Patroli</strong>
                         </a>
                     </div>
                    
@@ -135,35 +143,35 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
     <!-- Label Absensi Hari ini -->
     <div class="section">
         <div class="row mt-2">';
-            if($result_absent->num_rows > 0){
-                $row_absent     = $result_absent->fetch_assoc();
-                echo'
+        if ($result_absent->num_rows > 0) {
+            $row_absent     = $result_absent->fetch_assoc();
+            echo '
                 <div class="col-6">
                     <div class="stat-box bg-danger">
                         <div class="title text-white">Absen Masuk</div>
-                        <div class="value text-white">'.$row_absent['time_in'].'</div>
+                        <div class="value text-white">' . $row_absent['time_in'] . '</div>
                     </div>
                 </div>';
 
-                if($row_absent['time_out']=='00:00:00'){
-                echo'
+            if ($row_absent['time_out'] == '00:00:00') {
+                echo '
                 <div class="col-6">
                     <a href="./absent"><div class="stat-box bg-success">
                         <div class="title text-white">Absen Pulang</div>
                         <div class="value text-white">Belum absen</div>
                     </div></a>
                 </div>';
-                }else{
-                echo'
+            } else {
+                echo '
                 <div class="col-6">
                     <div class="stat-box bg-success">
                         <div class="title text-white">Absen Pulang</div>
-                        <div class="value text-white">'.$row_absent['time_out'].'</div>
+                        <div class="value text-white">' . $row_absent['time_out'] . '</div>
                     </div>
-                </div>';}
-            } 
-            else{
-                echo'
+                </div>';
+            }
+        } else {
+            echo '
                 <div class="col-6">
                     <a href="./absent"><div class="stat-box bg-danger">
                         <div class="title text-white">Absen Masuk</div>
@@ -178,8 +186,8 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                     </div>
                 </div>
                 ';
-            }   
-        echo' 
+        }
+        echo ' 
         </div>
     </div>
 
@@ -187,20 +195,68 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
     <div class="section mt-4">
         <div class="section-title mb-1">Absensi Bulan
             <select class="select select-change text-primary" required>';
-                if($month ==1){echo'<option value="01" selected>Januari</option>';}else{echo'<option value="01">Januari</option>';}
-                if($month ==2){echo'<option value="02" selected>Februari</option>';}else{echo'<option value="02">Februari</option>';}
-                if($month ==3){echo'<option value="03" selected>Maret</option>';}else{echo'<option value="03">Maret</option>';}
-                if($month ==4){echo'<option value="04" selected>April</option>';}else{echo'<option value="04">April</option>';}
-                if($month ==5){echo'<option value="05" selected>Mei</option>';}else{echo'<option value="05">Mei</option>';}
-                if($month ==6){echo'<option value="06" selected>Juni</option>';}else{echo'<option value="06">Juni</option>';}
-                if($month ==7){echo'<option value="07" selected>Juli</option>';}else{echo'<option value="07">Juli</option>';}
-                if($month ==8){echo'<option value="08" selected>Agustus</option>';}else{echo'<option value="08">Agustus</option>';}
-                if($month ==9){echo'<option value="09" selected>September</option>';}else{echo'<option value="09">September</option>';}
-                if($month ==10){echo'<option value="10" selected>Oktober</option>';}else{echo'<option value="10">Oktober</option>';}
-                if($month ==11){echo'<option value="12" selected>November</option>';}else{echo'<option value="12">November</option>';}
-                if($month ==12){echo'<option value="12" selected>Desember</option>';}else{echo'<option value="12">Desember</option>';}
-              echo'
-            </select><span class="text-primary">'.$year.'</span>
+        if ($month == 1) {
+            echo '<option value="01" selected>Januari</option>';
+        } else {
+            echo '<option value="01">Januari</option>';
+        }
+        if ($month == 2) {
+            echo '<option value="02" selected>Februari</option>';
+        } else {
+            echo '<option value="02">Februari</option>';
+        }
+        if ($month == 3) {
+            echo '<option value="03" selected>Maret</option>';
+        } else {
+            echo '<option value="03">Maret</option>';
+        }
+        if ($month == 4) {
+            echo '<option value="04" selected>April</option>';
+        } else {
+            echo '<option value="04">April</option>';
+        }
+        if ($month == 5) {
+            echo '<option value="05" selected>Mei</option>';
+        } else {
+            echo '<option value="05">Mei</option>';
+        }
+        if ($month == 6) {
+            echo '<option value="06" selected>Juni</option>';
+        } else {
+            echo '<option value="06">Juni</option>';
+        }
+        if ($month == 7) {
+            echo '<option value="07" selected>Juli</option>';
+        } else {
+            echo '<option value="07">Juli</option>';
+        }
+        if ($month == 8) {
+            echo '<option value="08" selected>Agustus</option>';
+        } else {
+            echo '<option value="08">Agustus</option>';
+        }
+        if ($month == 9) {
+            echo '<option value="09" selected>September</option>';
+        } else {
+            echo '<option value="09">September</option>';
+        }
+        if ($month == 10) {
+            echo '<option value="10" selected>Oktober</option>';
+        } else {
+            echo '<option value="10">Oktober</option>';
+        }
+        if ($month == 11) {
+            echo '<option value="12" selected>November</option>';
+        } else {
+            echo '<option value="12">November</option>';
+        }
+        if ($month == 12) {
+            echo '<option value="12" selected>Desember</option>';
+        } else {
+            echo '<option value="12">Desember</option>';
+        }
+        echo '
+            </select><span class="text-primary">' . $year . '</span>
         </div>
         <div class="transactions">
             <div class="row">
@@ -222,25 +278,25 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                             </tr>
                         </thead>
                         <tbody>';
-                        $query_absen="SELECT presence_date,time_in,time_out FROM presence WHERE YEARWEEK(presence_date)=YEARWEEK(NOW()) AND employees_id='$row_user[id]' ORDER BY presence_id DESC LIMIT 6";
-                        $result_absen = $connection->query($query_absen);
-                        if($result_absen->num_rows > 0){
-                            while ($row_absen= $result_absen->fetch_assoc()) {
-                            echo'
+        $query_absen = "SELECT presence_date,time_in,time_out FROM presence WHERE YEARWEEK(presence_date)=YEARWEEK(NOW()) AND employees_id='$row_user[id]' ORDER BY presence_id DESC LIMIT 6";
+        $result_absen = $connection->query($query_absen);
+        if ($result_absen->num_rows > 0) {
+            while ($row_absen = $result_absen->fetch_assoc()) {
+                echo '
                             <tr>
-                                <th scope="row">'.tgl_ind($row_absen['presence_date']).'</th>
-                                <td>'.$row_absen['time_in'].'</td>
-                                <td>'.$row_absen['time_out'].'</td>
+                                <th scope="row">' . tgl_ind($row_absen['presence_date']) . '</th>
+                                <td>' . $row_absen['time_in'] . '</td>
+                                <td>' . $row_absen['time_out'] . '</td>
                             </tr>';
-                        }}
-                        echo'
+            }
+        }
+        echo '
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>   
     </div>';
-
     }
-  include_once 'sw-mod/sw-footer.php';
-} ?>
+    include_once 'sw-mod/sw-footer.php';
+}
