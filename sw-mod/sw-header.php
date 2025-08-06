@@ -64,8 +64,6 @@ echo'
 <div class="loading"><div class="spinner-border text-primary" role="status"></div></div>
   <!-- loader -->
     <div id="loader">
-
-        <img src="'.$base_url.'sw-mod/sw-assets/img/SPM_SIAGA.png" alt="icon" class="loading-icon" style="width: 938px; height: 156px;">
         <img src="'.$base_url.'sw-content/'.$site_logo.'" alt="icon" class="loading-icon" style="max-width: 100%; max-height: 100%; height: auto; width: auto; display: block; margin: 0 auto;">
     </div>
     <!-- * loader -->';
