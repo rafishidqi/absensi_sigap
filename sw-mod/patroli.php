@@ -19,43 +19,57 @@ if ($mod == '') {
     $user_query = mysqli_query($connection, "SELECT id, employees_name FROM employees WHERE id = '$current_user_id'");
     
 
-    // Tambah data patroli
+        // Tambah data patroli
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_patrol'])) {
         $id_karyawan = (int) $_POST['id_karyawan'];
         $id_lokasi = (int) $_POST['id_lokasi'];
         $id_ceklis = (int) $_POST['id_ceklis'];
         $tanggal = mysqli_real_escape_string($connection, $_POST['tanggal']);
         $status = mysqli_real_escape_string($connection, $_POST['status']);
-
-        // Upload dokumentasi
         $dokumentasi = '';
-        if (isset($_FILES['dokumentasi']) && $_FILES['dokumentasi']['error'] == UPLOAD_ERR_OK) {
+        $error_message = '';
+
+        // Proses upload dokumentasi
+        if (isset($_FILES['dokumentasi']) && $_FILES['dokumentasi']['error'] === UPLOAD_ERR_OK) {
             $file_name = $_FILES['dokumentasi']['name'];
             $file_tmp = $_FILES['dokumentasi']['tmp_name'];
             $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-            $file_new_name = uniqid('patroli_') . '.' . $file_ext;
-            $upload_dir = '../uploads/';
+            $file_new_name = 'patroli_' . date('Ymd_His') . '_' . uniqid() . '.' . $file_ext;
+            $upload_dir = 'sw-mod/uploads/';
+            
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
+
             $upload_path = $upload_dir . $file_new_name;
 
             if (move_uploaded_file($file_tmp, $upload_path)) {
                 $dokumentasi = $file_new_name;
             } else {
-                die('Gagal mengupload file.');
+                $error_message = 'GAGAL UPLOAD: Periksa izin (permission) pada folder "uploads".';
             }
         }
 
-        // Insert ke DB
-        $insert_query = "INSERT INTO tbl_patroli (id_karyawan, id_lokasi, id_ceklis, tanggal, status, dokumentasi) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = mysqli_prepare($connection, $insert_query);
-        mysqli_stmt_bind_param($stmt, "iissss", $id_karyawan, $id_lokasi, $id_ceklis, $tanggal, $status, $dokumentasi);
+        // Lanjutkan hanya jika tidak ada error upload
+        if (empty($error_message)) {
+            $insert_query = "INSERT INTO tbl_patroli (id_karyawan, id_lokasi, id_ceklis, tanggal, status, dokumentasi) VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = mysqli_prepare($connection, $insert_query);
+            mysqli_stmt_bind_param($stmt, "iiisss", $id_karyawan, $id_lokasi, $id_ceklis, $tanggal, $status, $dokumentasi);
 
-        if (mysqli_stmt_execute($stmt)) {
-            header("Location: " . $_SERVER['REQUEST_URI']);
-            exit();
-        } else {
-            die('Error saat menambahkan data: ' . mysqli_error($connection));
+            if (mysqli_stmt_execute($stmt)) {
+                header("Location: " . $_SERVER['REQUEST_URI']);
+                exit();
+            } else {
+                $error_message = 'ERROR DATABASE: ' . mysqli_error($connection);
+            }
+        }
+
+        // Jika ada error, tampilkan alert
+        if (!empty($error_message)) {
+            echo '<div class="alert alert-danger" role="alert">' . htmlspecialchars($error_message) . '</div>';
         }
     }
+
 
     // Ambil data dropdown
     $lokasi_result = mysqli_query($connection, "SELECT id_lokasi, nama_lokasi FROM tbl_lokasi ORDER BY nama_lokasi");
@@ -105,7 +119,7 @@ if ($mod == '') {
                         <tbody>';
     while ($row = mysqli_fetch_assoc($result)) {
         $dokumentasi = !empty($row['dokumentasi']) ?
-            '<img src="' . $base_url . 'uploads/' . htmlspecialchars($row['dokumentasi']) . '" style="max-height:60px;">' : '-';
+            '<img src="' . $base_url . 'sw-mod/uploads/' . htmlspecialchars($row['dokumentasi']) . '" style="max-height:60px;">' : '-';
 
         echo '
             <tr>

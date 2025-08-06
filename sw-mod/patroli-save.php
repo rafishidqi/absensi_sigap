@@ -1,5 +1,5 @@
 <?php
-include_once 'config/koneksi.php'; // ganti sesuai file koneksi kamu
+include_once '../sw-library/sw-config.php'; // ganti sesuai file koneksi kamu
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_karyawan = $_POST['id_karyawan'];
