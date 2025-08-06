@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jul 2025 pada 15.44
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.4
+-- Waktu pembuatan: 19 Jul 2025 pada 15.57
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,15 +34,16 @@ CREATE TABLE `building` (
   `address` varchar(100) NOT NULL,
   `latitude_longtitude` varchar(150) NOT NULL,
   `radius` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `building`
 --
 
 INSERT INTO `building` (`building_id`, `code`, `name`, `address`, `latitude_longtitude`, `radius`) VALUES
-(7, '2023/2E622/2023-09-1', 'EYD COMPUTER KL7', 'KELAPA TUJUH', '-4.8462225,104.9076532', 50),
-(8, '2023/C9909/2023-09-1', 'EYD COMPUTER KB4', 'KEBON EMPAT', '-4.840112,104.886612', 50);
+(7, '2023/2E622/2023-09-1', 'SPM KANTOR PUSAT', 'KELAPA TUJUH', '-4.8462225,104.9076532', 50),
+(8, '2023/C9909/2023-09-1', 'SPM KANTOR CABANG', 'KEBON EMPAT', '-4.840112,104.886612', 50),
+(9, '2025/1FAAA/2025-07-1', 'KANTOR CABANG TANGERANG', 'DASANA INDAH', '-6.25583417906717,106.60433292388917', 50);
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,7 @@ CREATE TABLE `cuty` (
   `cuty_total` int(5) NOT NULL,
   `cuty_description` varchar(100) NOT NULL,
   `cuty_status` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -79,24 +80,19 @@ CREATE TABLE `employees` (
   `photo` varchar(100) NOT NULL,
   `created_login` datetime NOT NULL,
   `created_cookies` varchar(70) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `employees`
 --
 
 INSERT INTO `employees` (`id`, `employees_code`, `employees_email`, `employees_password`, `employees_name`, `position_id`, `shift_id`, `building_id`, `photo`, `created_login`, `created_cookies`) VALUES
-(17, '1212001', 'estri.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'ESTRI YASRIATNI', 1, 1, 8, '2023-11-194bc0b8ac363fc0bf797fff2782e1f499.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
-(18, '1212002', 'citra.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'CITRA ANINDA', 1, 1, 7, '2023-11-19e7ebd59a7ea637a44638610a0d89dcf1.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
-(19, '1212003', 'tantri.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'TANTRI FAOLINA', 1, 1, 7, '2023-11-19e7ebd59a7ea637a44638610a0d89dcf1.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
-(20, '1212004', 'gita.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'GITA OKTA RIYANTI', 1, 1, 8, '2023-11-19e7ebd59a7ea637a44638610a0d89dcf1.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
-(24, '121212', 'elvis.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'ELVIS', 1, 1, 7, '24-f9bd78abb9405c0163a91bafa8a8a695-102416.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
-(32, '12120005', 'alya.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'ALYA HERMALIA PUTRI', 1, 1, 7, '2023-11-19e7ebd59a7ea637a44638610a0d89dcf1.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
-(33, '1212009', 'saya.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'Saya', 1, 1, 7, '2023-11-19e7ebd59a7ea637a44638610a0d89dcf1.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
-(34, '1212010', 'pkl.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'PKL', 8, 1, 7, '2023-11-19e7ebd59a7ea637a44638610a0d89dcf1.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
-(35, '1212011', 'user.eydcom@gmail.com', '188aac79ca895ba77a1114e9b4a3cc8544d69c56d47adfa90f8ef77a76e244fd', 'User', 1, 1, 7, '2023-11-19e7ebd59a7ea637a44638610a0d89dcf1.jpg', '2023-11-19 12:27:56', 'c2d2edfeba9c6a847344035b896dc14d'),
 (36, '12345', 'ikmalhanaanz31@gmail.com', 'd1321497453c5367f4f8987b3156319ace28da05e36163d91b82d200686f963d', 'Ikmal Hanaan Zikri', 8, 1, 8, '', '2025-07-07 20:13:23', '01c52a17cf38c3a4ba604838efe204a4'),
-(37, '1234567', 'hanaanz31@gmail.com', 'd1321497453c5367f4f8987b3156319ace28da05e36163d91b82d200686f963d', 'Saddan Husein', 8, 1, 8, '', '2025-07-07 20:13:23', '01c52a17cf38c3a4ba604838efe204a4');
+(37, '1234567', 'hanaanz31@gmail.com', 'd1321497453c5367f4f8987b3156319ace28da05e36163d91b82d200686f963d', 'Saddan Husein', 8, 1, 8, '', '2025-07-07 20:13:23', '01c52a17cf38c3a4ba604838efe204a4'),
+(38, '123456789012', 'taufik78964@gmail.com', 'dc14f914538c74f38dab30cd25aa669c2b0a979f7679004ced651d75ae7d931c', 'Taufik', 1, 1, 8, '', '2025-07-08 00:00:00', '475a92cd68c63003afbda8cb895e0607'),
+(39, '0700168', 'nda.ramdhana@gmail.com', 'c23104fce6c22dabe892f5ca1c74da5300eb55edcca271842f59fe83715f3acc', 'NANDA', 8, 1, 9, '2025-07-1653d747371c07bf5a9830d3ca1c2abffe.jpg', '2025-07-16 17:03:34', '961535ecf9991f3b21e2d212727960e7'),
+(40, '120315', 'greata@mitragarda.id', '8d83beea3f17295dd7f85e0935c50c18a949c7bfb8efd5544be1580eb1a657e0', 'Greata', 8, 1, 9, '', '2025-07-16 12:43:49', '4d4a8619bf8ea93104ac53684bab24bb'),
+(41, '1982989', 'setiawan@gmail.com', '67b27465b4dafca2269a182612aee716be3d0824b4db00c91dd0591d5f61761c', 'Setiawan', 1, 1, 8, '', '2025-07-16 17:07:49', '3e12cb83f899c56dfcfb9fa089e3cd7a');
 
 -- --------------------------------------------------------
 
@@ -108,7 +104,7 @@ CREATE TABLE `holiday` (
   `holiday_id` int(11) NOT NULL,
   `holiday_date` date NOT NULL,
   `description` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -127,14 +123,13 @@ CREATE TABLE `permission` (
   `type` varchar(20) NOT NULL,
   `date` date NOT NULL,
   `status` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `permission`
 --
 
 INSERT INTO `permission` (`permission_id`, `employees_id`, `permission_name`, `permission_date`, `permission_date_finish`, `permission_description`, `files`, `type`, `date`, `status`) VALUES
-(23, 17, 'ESTRI YASRIATNI', '2023-09-25', '2023-09-25', 'Sakit', '2023-09-25-17-1695601284333632889346137295826jpg.jpg', 'Sakit', '2023-09-25', '1'),
 (24, 30, 'SITI ARIYANI', '2023-09-29', '2023-09-29', 'Izin pulang karen sodara ada yang meninggal dunia ', '2023-09-29-30-16959631208361281629047648887746jpg.jpg', 'Izin', '2023-09-29', '1'),
 (25, 18, 'CITRA ANINDA', '2023-10-10', '2023-10-10', 'Izin mamak oprasi', '2023-10-10-18-imagejpg.jpg', 'Izin', '2023-10-10', '1'),
 (26, 17, 'ESTRI YASRIATNI', '2023-10-10', '2023-10-10', 'Sakit ', '2023-10-10-17-16969236971165629210396166219880jpg.jpg', 'Sakit', '2023-10-10', '1'),
@@ -155,7 +150,7 @@ INSERT INTO `permission` (`permission_id`, `employees_id`, `permission_name`, `p
 CREATE TABLE `position` (
   `position_id` int(5) NOT NULL,
   `position_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `position`
@@ -163,7 +158,7 @@ CREATE TABLE `position` (
 
 INSERT INTO `position` (`position_id`, `position_name`) VALUES
 (1, 'STAFF'),
-(8, 'PKL / PRAKERIN');
+(8, 'BOD');
 
 -- --------------------------------------------------------
 
@@ -183,7 +178,7 @@ CREATE TABLE `presence` (
   `latitude_longtitude_in` varchar(200) NOT NULL,
   `latitude_longtitude_out` varchar(200) NOT NULL,
   `information` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `presence`
@@ -230,7 +225,6 @@ INSERT INTO `presence` (`presence_id`, `employees_id`, `presence_date`, `time_in
 (48, 28, '2023-09-25', '07:15:46', '17:03:57', 'absen-in-28-1695600946.jpg', 'absen-out-28-1695636237.jpg', 1, '-4.839975,104.8862631', '<font style=\"vertical-align: inherit;\"><font style=\"vertical-align: inherit;\">-4.840329,104.8864829</font></font>', ''),
 (49, 18, '2023-09-25', '07:20:12', '17:02:35', 'absen-in-18-1695601212.jpg', 'absen-out-18-1695636155.jpg', 1, '-4.846414523152555,104.90768653423964', '-4.846187109869548,104.90768083644055', ''),
 (50, 20, '2023-09-25', '07:20:21', '17:05:35', 'absen-in-20-1695601221.jpg', 'absen-out-20-1695636335.jpg', 1, '-4.8403384,104.8864807', '-4.8400934,104.8864023', ''),
-(51, 17, '2023-09-25', '00:00:00', '00:00:00', '', '', 2, '', '', ''),
 (52, 22, '2023-09-26', '07:06:14', '17:04:34', 'absen-in-22-1695686774.jpg', 'absen-out-22-1695722674.jpg', 1, '-4.8462159,104.9076655', '-4.8462138,104.9076643', ''),
 (53, 30, '2023-09-26', '07:09:52', '17:03:38', 'absen-in-30-1695686992.jpg', 'absen-out-30-1695722618.jpg', 1, '-4.8400528,104.8863233', '-4.8400831,104.8865286', ''),
 (54, 20, '2023-09-26', '07:10:11', '17:00:35', 'absen-in-20-1695687011.jpg', 'absen-out-20-1695722435.jpg', 1, '-4.840142,104.8865538', '-4.8401522,104.8865637', ''),
@@ -624,7 +618,9 @@ INSERT INTO `presence` (`presence_id`, `employees_id`, `presence_date`, `time_in
 (441, 17, '2023-11-18', '07:21:31', '17:02:54', 'absen-in-17-1700266891.jpg', 'absen-out-17-1700301774.jpg', 1, '-4.8399771,104.8863133', '-4.8403841,104.8865221', ''),
 (442, 32, '2023-11-18', '07:21:34', '17:04:00', 'absen-in-32-1700266894.jpg', 'absen-out-32-1700301840.jpg', 1, '-4.846246034183778,104.90763543866404', '-4.846300513959989,104.90769291638688', ''),
 (443, 18, '2023-11-18', '07:28:52', '17:04:09', 'absen-in-18-1700267332.jpg', 'absen-out-18-1700301849.jpg', 1, '-4.8462124,104.9076632', '-4.8462119,104.9076726', ''),
-(444, 20, '2023-11-19', '07:48:37', '00:00:00', 'absen-in-20-1700354917.jpg', '', 1, '-4.8399325,104.8862333', '', '');
+(444, 20, '2023-11-19', '07:48:37', '00:00:00', 'absen-in-20-1700354917.jpg', '', 1, '-4.8399325,104.8862333', '', ''),
+(445, 39, '2025-07-16', '12:47:11', '00:00:00', 'absen-in-39-1752644831.jpg', '', 1, '-6.2557418,106.6044947', '', ''),
+(446, 40, '2025-07-16', '12:47:59', '00:00:00', 'absen-in-40-1752644879.jpg', '', 1, '-6.255820677321032,106.60454759206338', '', '');
 
 -- --------------------------------------------------------
 
@@ -635,7 +631,7 @@ INSERT INTO `presence` (`presence_id`, `employees_id`, `presence_date`, `time_in
 CREATE TABLE `present_status` (
   `present_id` int(6) NOT NULL,
   `present_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `present_status`
@@ -659,14 +655,14 @@ CREATE TABLE `shift` (
   `shift_name` varchar(20) NOT NULL,
   `time_in` time NOT NULL,
   `time_out` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `shift`
 --
 
 INSERT INTO `shift` (`shift_id`, `shift_name`, `time_in`, `time_out`) VALUES
-(1, 'JAM KERJA EYD COM', '07:15:00', '17:00:00');
+(1, 'SIFT PAGI', '07:30:00', '17:00:00');
 
 -- --------------------------------------------------------
 
@@ -691,14 +687,34 @@ CREATE TABLE `sw_site` (
   `gmail_username` varchar(50) NOT NULL,
   `gmail_password` varchar(50) NOT NULL,
   `gmail_port` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `sw_site`
 --
 
 INSERT INTO `sw_site` (`site_id`, `site_url`, `site_name`, `site_company`, `site_manager`, `site_director`, `site_phone`, `site_address`, `site_description`, `site_logo`, `site_email`, `site_email_domain`, `gmail_host`, `gmail_username`, `gmail_password`, `gmail_port`) VALUES
-(1, 'https://eydcom.com/absensi', 'ABSENSI EYD COMPUTER', 'EYD COMPUTER', 'CITRA ANINDA', 'ELVIS YOLANDA DARSON, SH', '081279721081', 'Lampung Utara', 'ABSENSI EYD COMPUTER', 'ganci-eyd-compng.png', 'suport.eydcom@gmail.com', 'info@eydcom.com', 'eydcom.gmail.com', 'suport.eydcom@gmail.com', 'eydcom.com', '465');
+(1, 'www.mitragarda.id', 'SPM #SIAGA', 'SATRIA PRAWIRA MAHARDIKA', 'NANDA RAMDHANA', 'NANDA RAMDHANA', '085222277227', 'Tangerang', 'SPM #SIAGA', 'spm_siagapng.png', 'info@mitragarda.id', 'info@mitragarda.id', 'eydcom.gmail.com', 'suport.eydcom@gmail.com', 'eydcom.com', '465');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_lokasi`
+--
+
+CREATE TABLE `tbl_lokasi` (
+  `id_lokasi` int(11) NOT NULL,
+  `nama_lokasi` varchar(255) NOT NULL,
+  `deskripsi_lokasi` text DEFAULT NULL,
+  `koordinat_gps` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tbl_lokasi`
+--
+
+INSERT INTO `tbl_lokasi` (`id_lokasi`, `nama_lokasi`, `deskripsi_lokasi`, `koordinat_gps`) VALUES
+(1, 'titik 1', 'cek titik 1', '-6.9232929166853525,107.60662078857422');
 
 -- --------------------------------------------------------
 
@@ -719,15 +735,16 @@ CREATE TABLE `user` (
   `ip` varchar(20) NOT NULL,
   `browser` varchar(30) NOT NULL,
   `level` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `fullname`, `registered`, `created_login`, `last_login`, `session`, `ip`, `browser`, `level`) VALUES
-(1, 'eydcom.com', 'id.eydcom@gmail.com', '36b491d1a1c41097f00a4148d39bed1d079190a4d0750b1b084c7459519e5546', 'EYD COMPUTER', '2025-07-07 18:46:03', '2025-07-07 20:25:25', '2025-07-07 20:43:46', '-', '127.0.0.1', 'Chrome', 1),
-(2, 'operator', 'operator.eydcom@gmail.com', '36b491d1a1c41097f00a4148d39bed1d079190a4d0750b1b084c7459519e5546', 'Operator', '2025-07-07 18:46:03', '2025-07-07 20:25:25', '2025-07-07 18:46:03', '-', '127.0.0.1', 'Chrome', 2);
+(1, 'eydcom.com', 'admin@satpam-siaga.com', '36b491d1a1c41097f00a4148d39bed1d079190a4d0750b1b084c7459519e5546', 'SATPAM SIAGA', '2025-07-07 18:46:03', '2025-07-19 19:43:27', '2025-07-17 19:07:36', '-', '127.0.0.1', 'Chrome', 1),
+(2, 'operator', 'operator.eydcom@gmail.com', '36b491d1a1c41097f00a4148d39bed1d079190a4d0750b1b084c7459519e5546', 'Operator', '2025-07-07 18:46:03', '2025-07-19 19:43:27', '2025-07-07 18:46:03', '-', '127.0.0.1', 'Chrome', 2),
+(3, 'Nanda', 'hosting@mitragarda.id', 'ce084e148fc5ec82295e03c29960cb7c15e54e792b3190db6480b37e7a9c1063', 'Nanda', '2025-07-16 12:50:24', '2025-07-17 22:38:22', '2025-07-16 12:58:34', '-', '127.0.0.1', 'Chrome', 1);
 
 -- --------------------------------------------------------
 
@@ -738,7 +755,7 @@ INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `fullname`, `reg
 CREATE TABLE `user_level` (
   `level_id` int(4) NOT NULL,
   `level_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `user_level`
@@ -813,6 +830,12 @@ ALTER TABLE `sw_site`
   ADD PRIMARY KEY (`site_id`);
 
 --
+-- Indeks untuk tabel `tbl_lokasi`
+--
+ALTER TABLE `tbl_lokasi`
+  ADD PRIMARY KEY (`id_lokasi`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
@@ -832,7 +855,7 @@ ALTER TABLE `user_level`
 -- AUTO_INCREMENT untuk tabel `building`
 --
 ALTER TABLE `building`
-  MODIFY `building_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `building_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `cuty`
@@ -844,7 +867,7 @@ ALTER TABLE `cuty`
 -- AUTO_INCREMENT untuk tabel `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT untuk tabel `holiday`
@@ -868,7 +891,7 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT untuk tabel `presence`
 --
 ALTER TABLE `presence`
-  MODIFY `presence_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=445;
+  MODIFY `presence_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=447;
 
 --
 -- AUTO_INCREMENT untuk tabel `present_status`
@@ -889,10 +912,16 @@ ALTER TABLE `sw_site`
   MODIFY `site_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT untuk tabel `tbl_lokasi`
+--
+ALTER TABLE `tbl_lokasi`
+  MODIFY `id_lokasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_level`
