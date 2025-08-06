@@ -116,7 +116,7 @@ if ($mod == '') {
                     </div>
                    
                     <div class="item">
-                        <a href="./history">
+                        <a href="./patroli-histori">
                             <div class="icon-wrapper bg-success">
                                <ion-icon name="document-text-outline"></ion-icon>
                             </div>

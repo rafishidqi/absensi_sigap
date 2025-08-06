@@ -1,64 +1,64 @@
-<?php if(empty($connection)){
-  header('location:./404');
+<?php if (empty($connection)) {
+    header('location:./404');
 } else {
-  ob_start("minify_html");
-echo'
+    ob_start("minify_html");
+    echo '
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
-  <title>'.$website_name.'</title> <!-- Sementara pakai hardcode karna belom ada urlbase baru -->
+  <title>' . $website_name . '</title> <!-- Sementara pakai hardcode karna belom ada urlbase baru -->
   <meta name="theme-color" content="#FF396F">
   <meta name="msapplication-navbutton-color" content="#FF396F">
   <meta name="apple-mobile-web-app-status-bar-style" content="#FF396F">
 
     <!-- Favicons -->
-  <link rel="shortcut icon" href="'.$base_url.'/sw-content/SPM_SIAGA2.png">
-  <link rel="apple-touch-icon" href="'.$base_url.'/sw-content/SPM_SIAGA2.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="'.$base_url.'/sw-content/SPM_SIAGA2.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="'.$base_url.'/sw-content/SPM_SIAGA2.png">
+  <link rel="shortcut icon" href="' . $base_url . '/sw-content/SPM_SIAGA2.png">
+  <link rel="apple-touch-icon" href="' . $base_url . '/sw-content/SPM_SIAGA2.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="' . $base_url . '/sw-content/SPM_SIAGA2.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="' . $base_url . '/sw-content/SPM_SIAGA2.png">
   
   <meta name="robots" content="noindex">
-  <meta name="description" content="'.$meta_description.'">
-  <meta name="keywords" content="'.$meta_keyword.'">
-  <meta name="author" content="'.$website_name.'">
-  <meta http-equiv="Copyright" content="'.$website_name.'">
-  <meta name="copyright" content="'.$website_name.'">
+  <meta name="description" content="' . $meta_description . '">
+  <meta name="keywords" content="' . $meta_keyword . '">
+  <meta name="author" content="' . $website_name . '">
+  <meta http-equiv="Copyright" content="' . $website_name . '">
+  <meta name="copyright" content="' . $website_name . '">
   <meta itemprop="image" content="sw-content/meta-tag.jpg">
 
-  <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/css/style.css">
-  <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/css/sw-custom.css">
+  <link rel="stylesheet" href="' . $base_url . '/sw-mod/sw-assets/css/style.css">
+  <link rel="stylesheet" href="' . $base_url . '/sw-mod/sw-assets/css/sw-custom.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datepicker/datepicker3.css">
-  <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datatables/dataTables.bootstrap.css">
-  <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="' . $base_url . '/sw-mod/sw-assets/js/plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="' . $base_url . '/sw-mod/sw-assets/js/plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="' . $base_url . '/sw-mod/sw-assets/js/plugins/magnific-popup/magnific-popup.css">
   
 </head>';
 
-if($mod=='home'){
-echo'<body onload="loadDataCounter();">';
-}elseif ($mod=='cuty') {
-echo'<body onload="loadDataCuty();">';
-}elseif($mod=='izin'){
-echo'<body onload="loadDataIzin();">';
-}elseif ($mod=='history') {
-echo'<body onload="loadData();">';
-}else{
-echo'<body>';
-}
-echo'
+    if ($mod == 'home') {
+        echo '<body onload="loadDataCounter();">';
+    } elseif ($mod == 'cuty') {
+        echo '<body onload="loadDataCuty();">';
+    } elseif ($mod == 'izin') {
+        echo '<body onload="loadDataIzin();">';
+    } elseif ($mod == 'history') {
+        echo '<body onload="loadData();">';
+    } else {
+        echo '<body>';
+    }
+    echo '
 
 <body>
 <div class="loading"><div class="spinner-border text-primary" role="status"></div></div>
   <!-- loader -->
     <div id="loader">
-        <img src="'.$base_url.'sw-mod/sw-assets/img/SPM_SIAGA.png" alt="icon" class="loading-icon" style="width: 938px; height: 156px;">
+        <img src="' . $base_url . 'sw-mod/sw-assets/img/SPM_SIAGA.png" alt="icon" class="loading-icon" style="width: 938px; height: 156px;">
     </div>
     <!-- * loader -->';
-if(isset($_COOKIE['COOKIES_MEMBER'])){
-  echo'
+    if (isset($_COOKIE['COOKIES_MEMBER'])) {
+        echo '
 <!-- App Header -->
     <div class="appHeader bg-danger text-light">
         <div class="left">
@@ -67,30 +67,36 @@ if(isset($_COOKIE['COOKIES_MEMBER'])){
             </a>
         </div>
         <div class="pageTitle">
-            <img src="'.$base_url.'sw-content/'.$site_logo.'" alt="logo" class="logo">
+            <img src="' . $base_url . 'sw-content/' . $site_logo . '" alt="logo" class="logo">
         </div>
         <div class="right">
             <div class="headerButton" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true">';
-              if($row_user['photo'] ==''){
-                echo'<img src="'.$base_url.'sw-content/avatar.jpg" alt="image" class="imaged w32">';
-              }else{
-                echo'
-                <img src="timthumb?src='.$base_url.'sw-content/karyawan/'.$row_user['photo'].'&h=40&w=45" alt="image" class="imaged w32">';}
-              echo'
-               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';?>
-                <a class="dropdown-item" onclick="location.href='./profile';" href="./profile"><ion-icon size="small" name="person-outline"></ion-icon>Profil</a>
-                <a class="dropdown-item" onclick="location.href='./logout';" href="./logout"><ion-icon size="small" name="log-out-outline"></ion-icon>Keluar</a>
-              </div>
-            </div>
-        </div>
-            <div class="progress" style="display:none;position:absolute;top:50px;z-index:4;left:0px;width: 100%">
-                <div id="progressBar" class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                    <span class="sr-only">0%</span>
-                </div>
-            </div>
+        if ($row_user['photo'] == '') {
+            echo '<img src="' . $base_url . 'sw-content/avatar.jpg" alt="image" class="imaged w32">';
+        } else {
+            echo '
+                <img src="timthumb?src=' . $base_url . 'sw-content/karyawan/' . $row_user['photo'] . '&h=40&w=45" alt="image" class="imaged w32">';
+        }
+        echo '
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">'; ?>
+<a class="dropdown-item" onclick="location.href='./profile';" href="./profile">
+    <ion-icon size="small" name="person-outline"></ion-icon>Profil
+</a>
+<a class="dropdown-item" onclick="location.href='./logout';" href="./logout">
+    <ion-icon size="small" name="log-out-outline"></ion-icon>Keluar
+</a>
+</div>
+</div>
+</div>
+<div class="progress" style="display:none;position:absolute;top:50px;z-index:4;left:0px;width: 100%">
+    <div id="progressBar" class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+        <span class="sr-only">0%</span>
     </div>
+</div>
+</div>
 <?php
-echo'<!-- App Sidebar -->
+        echo '<!-- App Sidebar -->
     <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -98,16 +104,16 @@ echo'<!-- App Sidebar -->
                     <!-- profile box -->
                     <div class="profileBox pt-2 pb-2">
                         <div class="image-wrapper">';
-                        if($row_user['photo'] ==''){
-                        echo'<img src="'.$base_url.'/sw-content/avatar.jpg" alt="image" class="imaged  w36">';
-                        }else{
-                        echo'<img src="timthumb?src='.$base_url.'sw-content/karyawan/'.$row_user['photo'].'&h=40&w=45" class="imaged  w36">';
-                        }
-                          echo'
+        if ($row_user['photo'] == '') {
+            echo '<img src="' . $base_url . '/sw-content/avatar.jpg" alt="image" class="imaged  w36">';
+        } else {
+            echo '<img src="timthumb?src=' . $base_url . 'sw-content/karyawan/' . $row_user['photo'] . '&h=40&w=45" class="imaged  w36">';
+        }
+        echo '
                         </div>
                         <div class="in">
-                            <strong>'.ucfirst($row_user['employees_name']).'</strong>
-                            <div class="text-muted">'.$row_user['employees_code'].'</div>
+                            <strong>' . ucfirst($row_user['employees_name']) . '</strong>
+                            <div class="text-muted">' . $row_user['employees_code'] . '</div>
                         </div>
                         <a href="#" class="btn btn-link btn-icon sidebar-close" data-dismiss="modal">
                             <ion-icon name="close-outline"></ion-icon>
@@ -154,7 +160,7 @@ echo'<!-- App Sidebar -->
                         </li>
 
                         <li>
-                            <a href="./history" class="item">
+                            <a href="./patroli-histori" class="item">
                                 <div class="icon-box bg-danger">
                                     <ion-icon name="document-text-outline"></ion-icon>
                                 </div>
@@ -188,5 +194,5 @@ echo'<!-- App Sidebar -->
         </div>
     </div>
     <!-- * App Sidebar -->';
-  }
- }?>
+    }
+} ?>

@@ -1,0 +1,59 @@
+[33mcommit f96471b370929d428802e8c347e3e9fd0a4f8d6a[m[33m ([m[1;32msalman[m[33m)[m
+Author: Fall2607 <habibnaufal621@gmail.com>
+Date:   Thu Jul 31 18:05:50 2025 +0700
+
+    menambahkan tampilan patroli seadanya
+
+[33mcommit 4650851c178d68bf62723c06424483afdf59e873[m
+Author: Fall2607 <habibnaufal621@gmail.com>
+Date:   Sat Jul 19 21:56:59 2025 +0700
+
+    merubah button sesuai tema
+
+[33mcommit e38eae1a3d239641125ed624b06472adb60e637f[m
+Author: Fall2607 <habibnaufal621@gmail.com>
+Date:   Sat Jul 19 09:47:04 2025 +0700
+
+    memindahkan fitur ubah thema ke admin dan hilang di users
+
+[33mcommit 8141d53ba6279fef290c3bab6eef12d5de1cf719[m
+Author: Fall2607 <habibnaufal621@gmail.com>
+Date:   Thu Jul 10 16:03:08 2025 +0700
+
+    merubah warna tampilan user dan logo loading (add database baru)
+
+[33mcommit 648a5392baa44c6fdd887130b4587f7e2d0f9b04[m
+Author: Fall2607 <habibnaufal621@gmail.com>
+Date:   Thu Jul 10 12:10:37 2025 +0700
+
+    merubah logo
+
+[33mcommit 19bdae559e6158eb1aeb43f2b8f707d308bde86e[m
+Author: Fall2607 <habibnaufal621@gmail.com>
+Date:   Wed Jul 9 12:05:40 2025 +0700
+
+    commit ke 3
+
+[33mcommit cb570761ec9236108dfef106e57857f4bd02b5ec[m
+Author: Fall2607 <habibnaufal621@gmail.com>
+Date:   Wed Jul 9 10:08:56 2025 +0700
+
+    mengganti logo menjadi ABSENSI #SIGAP v2
+
+[33mcommit cc1abf6ae4b9f8674f14d637d2d3ed443c321903[m
+Author: Fall2607 <habibnaufal621@gmail.com>
+Date:   Wed Jul 9 09:41:49 2025 +0700
+
+    mengganti logo menjadi ABSENSI #SIGAP
+
+[33mcommit 31a9b83f112567583870674f7b1dd2174d485a15[m
+Author: Fall2607 <habibnaufal621@gmail.com>
+Date:   Mon Jul 7 21:23:42 2025 +0700
+
+    first commit to branch salman
+
+[33mcommit 9b919cb6f827742c73cb1c992d1955120d3d5fd9[m
+Author: Hanz070731 <ikmalhanaanz31@gmail.com>
+Date:   Mon Jul 7 21:15:02 2025 +0700
+
+    Push awal project absensi sigap
