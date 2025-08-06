@@ -18,8 +18,8 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Icons -->
-    <link rel="shortcut icon" href="../../sw-content/favicon.png">
-    <link rel="apple-touch-icon" href="../../sw-content/favicon.png">
+    <link rel="shortcut icon" href="../../sw-content/SPM_SIAGA2.png">
+    <link rel="apple-touch-icon" href="../../sw-content/SPM_SIAGA2.png">
 
   <link rel="stylesheet" href="../sw-assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../sw-assets/css/AdminLTE.min.css">
@@ -94,8 +94,8 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
 
 
 <footer class="text-muted text-center">
-    <small></span><span <a href='http://www.eydcom.com'/> TOKO KAMI <a href='http://www.eydcom.com'/> - ONLINE DAN OFFLINE <a href='http://www.eydcom.com'/><br/>
- &#169; <strong>2012-<?= date("Y"); ?>. EYD COMPUTER - www.eydcom.com</a><br/><div id="credits"><a class="credits" href="https://eydcom.com" target="_blank"></a></span>
+    <small></span><span <a href=''/> TOKO KAMI <a href=''/> - ONLINE DAN OFFLINE <a href=''/><br/>
+ &#169; <strong>2012-<?= date("Y"); ?>. </a><br/><div id="credits"><a class="credits" href="https://eydcom.com" target="_blank"></a></span>
     <em>Version 3.2</em></small>
 </footer>
 

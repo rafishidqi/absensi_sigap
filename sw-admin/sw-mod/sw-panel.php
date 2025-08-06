@@ -1,3 +1,5 @@
+sw panel
+
 <?php if (empty($connection)) {
   header('location:./404');
 } else {
@@ -102,6 +104,16 @@
     echo '<li>';
   }
   echo '<a href="./checklist"><i class="fa fa-check-square-o" aria-hidden="true"></i> <span>Data Checklist</span></a></li>';
+
+  // Menu Data Patroli - untuk Administrator dan Operator
+  if ($level_user == '1' || $level_user == '2') {
+    if ($mod == 'patroli') {
+      echo '<li class="active">';
+    } else {
+      echo '<li>';
+    }
+    echo '<a href="./patroli"><i class="fa fa-shield" aria-hidden="true"></i> <span>Data Patroli</span></a></li>';
+  }
 
   if ($level_user == '1') {
 

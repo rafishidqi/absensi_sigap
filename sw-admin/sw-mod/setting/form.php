@@ -61,7 +61,17 @@ case 'setting':
             <input type="text" name="site_url" id="site_url" class="form-control" value="'.$site_url.'" required="required">
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Warna Tema</label>
+          <div class="col-sm-2">
+            <input type="color" name="theme_color" id="theme_color" class="form-control" value="'.$theme_color.'">
+          </div>
+        </div>
+
         <hr>
+
+
         <div class="form-group">
           <label class="col-sm-2 control-label">Logo Website</label>
           <div class="col-sm-6">';

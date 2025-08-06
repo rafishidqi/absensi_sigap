@@ -28,7 +28,8 @@
   --danger:#dc3545;
   --light:#f8f9fa;
   --dark:#343a40;
-  --bg-danger:#FF396F;
+  /* --bg-danger:#FF396F; diubah*/
+  --bg-danger:var(--main-theme);
   --breakpoint-xs:0;
   --breakpoint-sm:576px;
   --breakpoint-md:768px;
@@ -8763,6 +8764,17 @@ a.badge-dark {
     opacity: 0.5; }
 
 .btn-danger {
+  background: var(--main-theme) !important;
+  border-color: var(--main-theme) !important;
+  color: #FFFFFF !important; }
+  .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active {
+    filter: brightness(85%);}
+  .btn-danger.disabled, .btn-danger:disabled {
+    background: var(--main-theme);
+    border-color: var(--main-theme);
+    opacity: 0.5; }
+
+/* .btn-danger {
   background: #FF396F !important;
   border-color: #FF396F !important;
   color: #FFFFFF !important; }
@@ -8772,7 +8784,7 @@ a.badge-dark {
   .btn-danger.disabled, .btn-danger:disabled {
     background: #FF396F;
     border-color: #FF396F;
-    opacity: 0.5; }
+    opacity: 0.5; } */
 
 .btn-warning {
   color: #fff !important;
