@@ -10,8 +10,20 @@ if ($mod == '') {
     // Mendapatkan koneksi dari header.
     global $connection;
 
-    // --- LOGIKA PHP UNTUK MENAMBAHKAN DATA PATROLI BARU ---
-    // Pastikan form disubmit dan file diupload.
+    // Validasi dan ambil data user login dari cookie
+    if (!isset($_COOKIE['COOKIES_MEMBER']) || empty($_COOKIE['COOKIES_MEMBER'])) {
+        setcookie('COOKIES_MEMBER', '', 0, '/');
+        setcookie('COOKIES_COOKIES', '', 0, '/');
+        session_destroy();
+        header("location:./");
+        exit;
+    }
+
+    $current_user_id = (int) $_COOKIE['COOKIES_MEMBER'];
+    $user_query = mysqli_query($connection, "SELECT id, employees_name FROM employees WHERE id = '$current_user_id'");
+
+
+    // Tambah data patroli
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_patrol'])) {
         // Ambil data dari form dan bersihkan dari input yang berbahaya.
         $id_karyawan = mysqli_real_escape_string($connection, $_POST['id_karyawan']);
@@ -20,38 +32,39 @@ if ($mod == '') {
         $tanggal = mysqli_real_escape_string($connection, $_POST['tanggal']);
         $status = mysqli_real_escape_string($connection, $_POST['status']);
 
-        // Tangani upload file dokumentasi.
+        // Upload dokumentasi
         $dokumentasi = '';
-        if (isset($_FILES['dokumentasi']) && $_FILES['dokumentasi']['error'] == UPLOAD_ERR_OK) {
+        $error_message = '';
+
+        // Proses upload dokumentasi
+        if (isset($_FILES['dokumentasi']) && $_FILES['dokumentasi']['error'] === UPLOAD_ERR_OK) {
             $file_name = $_FILES['dokumentasi']['name'];
             $file_tmp = $_FILES['dokumentasi']['tmp_name'];
             $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
             $file_new_name = uniqid('patroli_') . '.' . $file_ext;
-            $upload_dir = '../uploads/'; // Pastikan direktori ini ada dan bisa ditulisi.
+            $upload_dir = '../uploads/';
             $upload_path = $upload_dir . $file_new_name;
 
             if (move_uploaded_file($file_tmp, $upload_path)) {
                 $dokumentasi = $file_new_name;
             } else {
-                // Tangani error upload.
                 die('Gagal mengupload file.');
             }
         }
 
-        // Buat kueri INSERT. Rating dan komentar tidak diisi karena boleh null.
+        // Insert ke DB
         $insert_query = "INSERT INTO tbl_patroli (id_karyawan, id_lokasi, id_ceklis, tanggal, status, dokumentasi) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($connection, $insert_query);
         mysqli_stmt_bind_param($stmt, "iissss", $id_karyawan, $id_lokasi, $id_ceklis, $tanggal, $status, $dokumentasi);
 
-        // Jalankan kueri.
         if (mysqli_stmt_execute($stmt)) {
-            // Redirect setelah sukses untuk menghindari resubmit form.
             header("Location: " . $_SERVER['REQUEST_URI']);
             exit();
         } else {
             die('Error saat menambahkan data: ' . mysqli_error($connection));
         }
     }
+
 
 
     // Periksa otentikasi.
@@ -100,40 +113,38 @@ if ($mod == '') {
         }
 
         echo '
-        <!-- App Capsule -->
-        <head>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        </head>
-        <div id="appCapsule">
-            <div class="section mt-2">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div class="section-title">Data Patroli</div>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPatroliModal">
-                        <ion-icon name="add-outline"></ion-icon> Tambah
-                    </button>
-                </div>
-                <div class="card">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-sm mb-0">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Karyawan</th>
-                                    <th>Lokasi</th>
-                                    <th>Pekerjaan</th>
-                                    <th>Tanggal</th>
-                                    <th>Status</th>
-                                    <th>Rating</th>
-                                    <th>Dokumentasi</th>
-                                    <th>Komentar</th>
-                                </tr>
-                            </thead>
-                            <tbody>';
-
+    <!-- App Capsule -->
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <div id="appCapsule">
+        <div class="section mt-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="section-title">Data Patroli</div>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPatroliModal">
+                    <ion-icon name="add-outline"></ion-icon> Tambah
+                </button>
+            </div>
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Karyawan</th>
+                                <th>Lokasi</th>
+                                <th>Pekerjaan</th>
+                                <th>Tanggal</th>
+                                <th>Status</th>
+                                <th>Rating</th>
+                                <th>Dokumentasi</th>
+                                <th>Komentar</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
         while ($row = mysqli_fetch_assoc($result)) {
-            $dokumentasi = !empty($row['dokumentasi'])
-                ? '<img src="' . $base_url . 'uploads/' . htmlspecialchars($row['dokumentasi']) . '" style="max-height:60px;">'
-                : '-';
+            $dokumentasi = !empty($row['dokumentasi']) ?
+                '<img src="' . $base_url . 'uploads/' . htmlspecialchars($row['dokumentasi']) . '" style="max-height:60px;">' : '-';
 
             echo '
                 <tr>
