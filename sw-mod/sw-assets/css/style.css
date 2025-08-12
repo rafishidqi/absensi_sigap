@@ -7535,7 +7535,7 @@ a.text-dark:focus, a.text-dark:hover {
 .owl-theme .owl-dots .owl-dot {
   display: inline-block;
   zoom: 1;
-  *display: inline; }
+  display: inline; }
 
 .owl-theme .owl-dots .owl-dot span {
   width: 10px;

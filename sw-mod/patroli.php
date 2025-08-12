@@ -95,7 +95,8 @@ if ($mod == '') {
     LEFT JOIN employees e ON p.id_karyawan = e.id
     LEFT JOIN tbl_lokasi l ON p.id_lokasi = l.id_lokasi
     LEFT JOIN tbl_checklist c ON p.id_ceklis = c.id_checklist
-    ORDER BY p.id_patroli ";
+    WHERE p.id_karyawan = e.id and p.id_karyawan = '$id'
+    ORDER BY p.id_patroli DESC";
     $result = mysqli_query($connection, $query);
     
     echo '
